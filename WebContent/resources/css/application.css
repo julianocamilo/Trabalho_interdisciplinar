@@ -1,0 +1,48 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	background: #FFFFF0;
+}
+
+.form-title {
+	color: white;
+	font-weight: bold;
+	font-family: calibri;			
+	margin-left: 20px;	
+	position: relative;	
+	size: 12px;		
+}
+
+.login-form {
+	border: 1px solid;
+	border-radius: 5px;
+	background: #6495ED;
+	height: 150px;
+	margin: 10% auto;	
+	width: 500px; 
+}
+
+.hidden {
+	display: none;
+	visibility: false;	
+}
+
+.message {
+	background: #FF4500;
+	border-radius: 3px;
+	border: 1px solid #FF0000;
+	margin: 0 auto;	 
+}
+
+.message label {
+	color: white;
+	font-weight: bold;
+	font-family: calibri;		
+	size: 12px;			 
+}
+
+.form-text {
+	border-radius: 4px;
+	font-size: 10px
+	margin-left: 3px;
+}
