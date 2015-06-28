@@ -1,6 +1,6 @@
 package dao;
 
-import model.Usuario;
+import dto.Usuario;
 
 public class UsuarioDao {
 	
