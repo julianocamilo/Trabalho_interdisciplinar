@@ -24,20 +24,19 @@ public class SessionController {
 		return Session.getInstance().getUsuarioLogado();	
 	}
 	
-	public void login() throws Exception {
+	public void accesslogin() throws Exception {
+		this.messageError = "";
 		try {
 			Usuario user = userBo.userLogin(login, senha);
-			if (user == null) {
-				FacesContext.getCurrentInstance().validationFailed();
-				throw new Exception("Usuario incorreto");
+			if (user == null) {	
+				throw new Exception("incorrect user or password");
 			}
 			else
 			{
 				Session.getInstance().setAttribute("usuarioLogado", user);			
 			}
-		} catch(Exception ex) {
-			this.messageError = "";
-			this.setMessage("Mensagem de erro", ex.getMessage());
+		} catch(Exception ex) {			
+			this.setMessage("msgError", ex.getMessage());
 		}		
 	}
 	

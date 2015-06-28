@@ -4,29 +4,30 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 <title>Welcome to the Login page</title>
-<h:outputStylesheet library="css" name="application.css"/>
+<h:outputStylesheet library="css" name="login.css"/>
+<h:outputScript library="javascript" name="jquery-2.1.4.min.js"/>
+<h:outputScript library="javascript" name="login.js"/> 
 </h:head>
 <h:body>
-	<h:form>			
+	<h:form id="form-login" prependId="false">			
 		<div class="login-form">
-			<f:verbatim rendered="#{sessionController.messageError != ''}">  	
-				<div class="message">
-					<h:outputText value="#{sessionController.messageError}"/>
-				</div>
-			</f:verbatim>      	    
-			<center>
-				<h:outputLabel class="form-title">Please insert your credential</h:outputLabel>
-			</center>
+			<h:commandButton value="Login" id="button" action="#{sessionController.accesslogin}" class="button-form"/>      	    			
+			<h:outputLabel class="form-title">Please insert your credential</h:outputLabel>
+			<hr/>
 			<br/>
-			<h:outputLabel>Login</h:outputLabel>
-			<h:inputText value="#{sessionController.login}" id="login" class="form-text"/>		
-			<br/>
-			<h:outputLabel>Password</h:outputLabel>
-			<h:inputText value="#{sessionController.senha}" id="password" class="form-text"/>
-			<br/>
-			<h:commandButton value="Login" action="#{sessionController.login}" id="button" class="button-form"/>
-			<br/>
-		</div>		
+			<table>
+				<tr>
+					<th><h:outputLabel>Login</h:outputLabel></th>
+					<th><h:outputLabel>Password</h:outputLabel></th>
+				</tr>
+				<tr>	
+					<td><h:inputText value="#{sessionController.login}" id="login" class="form-text user"/></td>		
+					<td><h:inputText value="#{sessionController.senha}" id="password" class="form-text password"/></td>
+				</tr>	
+			</table>
+		</div>						
+		<h:messages id="msgErro" class="message"></h:messages>
+		<h:outputText value="#{sessionController.messageError}"/>							
 	</h:form>
 </h:body>
 </html>
