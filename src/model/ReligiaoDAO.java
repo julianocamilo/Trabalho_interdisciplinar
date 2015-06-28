@@ -16,6 +16,11 @@ public class ReligiaoDAO implements IDAO<Religiao> {
 		return null;
 	}
 
+	public void save(Religiao obj) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 	

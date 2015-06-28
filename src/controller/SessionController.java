@@ -6,16 +6,16 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import model.Session; 
+import dto.Session;
+import dto.Usuario;
+import bo.GerenciadorUsuario;
 
-import model.Usuario;
-import bo.UsuarioBo;
 
 @ManagedBean
 @SessionScoped
 public class SessionController {
 	@EJB
-	UsuarioBo userBo;
+	GerenciadorUsuario userBo;
 	private String login;
 	private String senha;
 	private String messageError;
@@ -27,9 +27,11 @@ public class SessionController {
 	public void accesslogin() throws Exception {
 		this.messageError = "";
 		try {
-			Usuario user = userBo.userLogin(login, senha);
-			if (user == null) {	
-				throw new Exception("incorrect user or password");
+
+			boolean user = GerenciadorUsuario.autenticar(login, senha);
+			if (!user) {
+				FacesContext.getCurrentInstance().validationFailed();
+				throw new Exception("incorrect user and password");
 			}
 			else
 			{
@@ -46,11 +48,11 @@ public class SessionController {
 	   FacesContext.getCurrentInstance().addMessage(obj, message);
 	}
 
-	public UsuarioBo getUserBo() {
+	public GerenciadorUsuario getUserBo() {
 		return userBo;
 	}
 
-	public void setUserBo(UsuarioBo userBo) {
+	public void setUserBo(GerenciadorUsuario userBo) {
 		this.userBo = userBo;
 	}
 

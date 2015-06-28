@@ -16,6 +16,11 @@ public class UsuarioDAO implements IDAO<Usuario>{
 		return null;
 	}
 
+	public void save(Usuario obj) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 	

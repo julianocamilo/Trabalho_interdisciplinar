@@ -16,4 +16,9 @@ public class TipoFiliacaoDAO implements IDAO<TipoFiliacao>{
 		return null;
 	}
 
+	public void save(TipoFiliacao obj) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
