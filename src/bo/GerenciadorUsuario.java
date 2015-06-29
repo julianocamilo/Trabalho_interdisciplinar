@@ -3,6 +3,8 @@ package bo;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 
+import model.IDAO;
+import model.UsuarioDAO;
 import dao.UsuarioDao;
 import dto.Usuario;
 
@@ -10,17 +12,19 @@ import dto.Usuario;
 @Local
 public class GerenciadorUsuario {
 	
-	public static Usuario getUsuario(String login, String senha){
-		return null;
-		
-		
+	
+	private static IDAO<Usuario> usuarioDao = new UsuarioDAO();
+	
+	public static Usuario getUsuario(String login, String senha) throws Exception{
+	
+		Usuario usuarioDto = new Usuario(login, senha);
+		return usuarioDao.get(usuarioDto);
 	}
 	
-	public static boolean autenticar(String login, String senha) throws Exception{
-		UsuarioDao userDao = new UsuarioDao();
-		Usuario userLogged = userDao.Login(login, senha);		
-		return true;		
-	}
+	
+	
+	
+	
 	
 }
 

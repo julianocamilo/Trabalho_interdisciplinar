@@ -1,32 +1,64 @@
 package dto;
 
-public class Pessoa {
+import java.io.Serializable;
+
+
+
+
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+
+@Entity
+@Inheritance(strategy=InheritanceType.JOINED)
+@Table(name="pessoas")
+public class Pessoa implements Serializable {
 	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 322317077739507674L;
+
+	@Id
+	@Column(name="Id_pessoa")
 	private int id;
+	
+	@Column(name="CEP")
 	private int cep;
+	
+	@Column(name="Logradouro")
 	private String logradouro;
+
+	@Column(name="Nome_social")
 	private String nomeSocial;
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Column(name="Nome")
 	private String nome;
 	
-	protected int etnia_id;
-	protected int religiao_id;
-	protected int sexo_id;
-	
-	
-	
-	//LazyLoads
-	public Sexo getSexo(){
-		return null;
-	}
-	
-	public Religiao getReligiao(){
-		return null;
-	}
-	
-	public Etnia getEtnia(){
-		return null;
-	}
-	
+	//@OneToOne(fetch = FetchType.LAZY, mappedBy = "pessoas", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
+	private Usuario usuario;
 	
 	//Getters and Setters
 	public int getId() {

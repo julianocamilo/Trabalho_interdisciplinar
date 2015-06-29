@@ -1,21 +1,28 @@
 package model;
 
+import helper.HibernateHelper;
+import helper.RandomHelper;
+
 import java.util.ArrayList;
 
 import dto.Pessoa;
+import dto.Professor;
 
-public class ProfessorDAO extends PessoaDAO{
+public class ProfessorDAO extends HibernateHelper<Professor> implements IDAO<Professor>{
 	
-	public void save(Pessoa pessoa) throws Exception {
-		super.save(pessoa);
-		
-		
-		
+
+
+	public ArrayList<Professor> getAll() throws Exception {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
-	public ArrayList<Pessoa> getAll() throws Exception {
+	public void save(Professor obj) throws Exception {
+		obj.setId(RandomHelper.getIntRandom());
+		executar(obj);
+	}
+
+	public Professor get(Professor obj) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

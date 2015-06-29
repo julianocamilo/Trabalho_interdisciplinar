@@ -13,10 +13,10 @@ public class Produto {
 		this.id = id;
 	}
 	public int getQuatidade() {
-		return quatidade;
+		return quantidade;
 	}
 	public void setQuatidade(int quatidade) {
-		this.quatidade = quatidade;
+		this.quantidade = quatidade;
 	}
 	public String getLocal() {
 		return local;

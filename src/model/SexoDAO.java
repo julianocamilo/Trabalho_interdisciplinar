@@ -6,12 +6,17 @@ import dto.Sexo;
 
 public class SexoDAO implements IDAO<Sexo> {
 
-	public void save() throws Exception {
+	public void save(Sexo sexo) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	public ArrayList<Sexo> getAll() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Sexo get(Sexo obj) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

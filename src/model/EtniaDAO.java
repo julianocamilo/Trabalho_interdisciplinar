@@ -6,12 +6,17 @@ import dto.Etnia;
 
 public class EtniaDAO implements IDAO<Etnia> {
 
-	public void save() throws Exception {
+	public void save(Etnia etnia) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	public ArrayList<Etnia> getAll() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Etnia get(Etnia obj) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

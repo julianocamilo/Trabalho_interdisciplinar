@@ -6,12 +6,17 @@ import dto.Deficiencia;
 
 public class DeficienciaDAO implements IDAO<Deficiencia>{
 
-	public void save() throws Exception {
+	public void save(Deficiencia deficiencia) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	public ArrayList<Deficiencia> getAll() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Deficiencia get(Deficiencia obj) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

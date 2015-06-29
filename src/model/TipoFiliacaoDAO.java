@@ -6,12 +6,17 @@ import dto.TipoFiliacao;
 
 public class TipoFiliacaoDAO implements IDAO<TipoFiliacao>{
 
-	public void save() throws Exception {
+	public void save(TipoFiliacao tipoFiliacao) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	public ArrayList<TipoFiliacao> getAll() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public TipoFiliacao get(TipoFiliacao obj) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
