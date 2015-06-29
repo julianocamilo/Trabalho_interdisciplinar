@@ -1,6 +1,6 @@
 package helper;
 
-import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -9,10 +9,8 @@ import java.util.Map.Entry;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceException;
-import javax.persistence.Query;
 
-import dto.Pessoa;
+import javax.persistence.Query;
 
 public class HibernateHelper<T>{
 

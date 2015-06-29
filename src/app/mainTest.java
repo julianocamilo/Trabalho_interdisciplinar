@@ -60,7 +60,7 @@ public class mainTest {
 		try {
 			System.out.println("FAZENDO LOGIN.....");
 			Usuario d =GerenciadorUsuario.getUsuario("root", "root");
-			System.out.println(d.getPessoa().getNome());
+			System.out.println(d.getPessoa());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
