@@ -13,17 +13,13 @@ import dto.Usuario;
 
 public class UsuarioDAO extends HibernateHelper<Usuario> implements IDAO<Usuario>{
 
-	public void save(Usuario usuario) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	public ArrayList<Usuario> getAll() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-<<<<<<< HEAD
+
 	public Usuario get(Usuario obj) throws Exception {
 		
 		HashMap<String, Object> args = new HashMap<String, Object>();
@@ -40,16 +36,13 @@ public class UsuarioDAO extends HibernateHelper<Usuario> implements IDAO<Usuario
 			
 		return users.get(0);
 	}
-	
-	
-=======
+
+
+	@Override
 	public void save(Usuario obj) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
->>>>>>> origin/master
-
-	
 	
 	
 	

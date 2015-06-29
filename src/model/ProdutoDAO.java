@@ -16,17 +16,12 @@ public class ProdutoDAO implements IDAO<Produto> {
 		return null;
 	}
 
-<<<<<<< HEAD
+
 	public Produto get(Produto obj) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
-=======
-	public void save(Produto obj) throws Exception {
-		// TODO Auto-generated method stub
-		
->>>>>>> origin/master
-	}
 
+	
 	
 	
 	

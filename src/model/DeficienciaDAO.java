@@ -16,18 +16,9 @@ public class DeficienciaDAO implements IDAO<Deficiencia>{
 		return null;
 	}
 
-<<<<<<< HEAD
 	public Deficiencia get(Deficiencia obj) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
-=======
-	public void save(Deficiencia obj) throws Exception {
-		// TODO Auto-generated method stub
-		
->>>>>>> origin/master
 	}
-	
-	
-	
 
 }
