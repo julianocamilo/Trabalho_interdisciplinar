@@ -16,12 +16,12 @@ public class SexoDAO implements IDAO<Sexo> {
 		return null;
 	}
 
-
 	public Sexo get(Sexo obj) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
-
-
+	}
+	
+	
 	
 	
 	

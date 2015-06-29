@@ -20,5 +20,4 @@ public class DeficienciaDAO implements IDAO<Deficiencia>{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

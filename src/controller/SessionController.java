@@ -17,8 +17,7 @@ import bo.GerenciadorUsuario;
 public class SessionController {
 	@EJB
 
-	GerenciadorUsuario userBo;
-
+	
 	private String login;
 	private String senha;
 	private String messageError;
@@ -33,8 +32,6 @@ public class SessionController {
 			if (user == null) {	
 				throw new Exception("incorrect user or password");
 
-
-		
 			}
 			else
 			{
@@ -49,15 +46,6 @@ public class SessionController {
 	{		
 	   FacesMessage message = new FacesMessage(msg);
 	   FacesContext.getCurrentInstance().addMessage(obj, message);
-	}
-
-
-	public GerenciadorUsuario getUserBo() {
-		return userBo;
-	}
-
-	public void setUserBo(GerenciadorUsuario userBo) {
-		this.userBo = userBo;
 	}
 
 

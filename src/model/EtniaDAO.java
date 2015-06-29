@@ -16,11 +16,9 @@ public class EtniaDAO implements IDAO<Etnia> {
 		return null;
 	}
 
-
 	public Etnia get(Etnia obj) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 
-
-
+	}
 }

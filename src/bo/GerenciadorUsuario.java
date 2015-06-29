@@ -5,7 +5,7 @@ import javax.ejb.Stateless;
 
 import model.IDAO;
 import model.UsuarioDAO;
-import dao.UsuarioDao;
+
 import dto.Usuario;
 
 @Stateless

@@ -21,7 +21,7 @@ public class ReligiaoDAO implements IDAO<Religiao> {
 		// TODO Auto-generated method stub
 		return null;
 
-
+	}
 
 	
 	
