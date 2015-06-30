@@ -1,13 +1,17 @@
 package model;
 
+import helper.HibernateHelper;
+import helper.RandomHelper;
+
 import java.util.ArrayList;
 
 import dto.Aluno;
 
-public class AlunoDAO implements IDAO<Aluno> {
+public class AlunoDAO extends HibernateHelper<Aluno> implements IDAO<Aluno> {
 
 	public void save(Aluno obj) throws Exception {
-		// TODO Auto-generated method stub
+		obj.setId(RandomHelper.getIntRandom());
+		executar(obj);
 		
 	}
 

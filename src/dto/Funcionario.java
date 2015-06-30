@@ -1,5 +1,6 @@
 package dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -8,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "funcionarios")
-public class Funcionario extends Pessoa  {
+public class Funcionario extends Pessoa implements Serializable  {
 
 	/**
 	 * 

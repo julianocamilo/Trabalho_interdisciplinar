@@ -1,24 +1,35 @@
 package model;
 
+import helper.HibernateHelper;
+import helper.RandomHelper;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import dto.Etnia;
 
-public class EtniaDAO implements IDAO<Etnia> {
 
-	public void save(Etnia etnia) throws Exception {
-		// TODO Auto-generated method stub
-		
+public class EtniaDAO extends HibernateHelper<Etnia> implements IDAO<Etnia> {
+
+	public void save(Etnia Etnia) throws Exception {
+		Etnia.setId(RandomHelper.getIntRandom());
+		executar(Etnia);
 	}
 
 	public ArrayList<Etnia> getAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		HashMap<String, Object> args = new HashMap<String, Object>();
+		String query_string = "SELECT e from Etnia e ";
+		return  (ArrayList<Etnia>) consultar(query_string, args);
+		
 	}
 
 	public Etnia get(Etnia obj) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
-
 	}
+	
+	
+	
+	
+	
+
 }

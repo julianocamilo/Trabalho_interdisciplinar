@@ -1,8 +1,26 @@
 package dto;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="religiao")
 public class Religiao {
+	
+	@Id
+	@Column(name="Id_religiao")
 	private int id;
+	
+	@Column(name="Descricao")
 	private String descricao;
+	
+	public Religiao(){}
+	
+	public Religiao(String descricao){
+		this.descricao = descricao;
+	}
 	
 	public int getId() {
 		return id;

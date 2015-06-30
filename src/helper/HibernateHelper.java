@@ -44,7 +44,7 @@ public class HibernateHelper<T>{
 		
 	}
 	
-	
+
 	public Collection<T> consultar(String query_string, HashMap<String, Object> args) throws Exception{
 		
 		

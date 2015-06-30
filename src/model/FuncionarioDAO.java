@@ -1,12 +1,18 @@
 package model;
 
+import helper.HibernateHelper;
+import helper.RandomHelper;
+
 import java.util.ArrayList;
 
 import dto.Funcionario;
 
-public class FuncionarioDAO implements IDAO<Funcionario>{
+public class FuncionarioDAO extends HibernateHelper<Funcionario> implements IDAO<Funcionario>{
 
 	public void save(Funcionario obj) throws Exception {
+		obj.setId(RandomHelper.getIntRandom());
+		executar(obj);
+		
 		// TODO Auto-generated method stub
 		
 	}

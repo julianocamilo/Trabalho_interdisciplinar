@@ -1,6 +1,8 @@
 package bo;
 
 
+import helper.RandomHelper;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -37,8 +39,11 @@ public class GerenciadorPessoa {
 		
 		pessoaDto.setCep(cep);
 		pessoaDto.setLogradouro(logradouro);
+		
 		pessoaDto.setNome(nome);
 		pessoaDto.setNomeSocial(nomeSocial);
+	
+		
 		return pessoaDto;
 		
 	}
@@ -46,9 +51,14 @@ public class GerenciadorPessoa {
 	
 	public static void salvarProfessor(int cep, String formacao,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id, int dia_id ) throws Exception{
 		
-		Professor professorDto = (Professor) validPessoa(cep, logradouro, nome, nomeSocial, sexo_id, etnia_id, religiao_id, deficiencias_id, dia_id);
-		professorDto.setFormacao(formacao);
+		if(nome.isEmpty())
+			throw new Exception("Nome é obrigatório");
+		
+		Professor professorDto = new Professor(nome,nomeSocial, cep, logradouro,formacao, etnia_id, sexo_id, religiao_id);
 		professorDao.save(professorDto);
+		
+		
+		
 	}
 	
 	
@@ -62,7 +72,7 @@ public class GerenciadorPessoa {
 	
 	public static void salvarFuncionario(int cep, String cargo, Date data_admissao,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id, int dia_id ) throws Exception{
 		
-		Funcionario funcionarioDto = (Funcionario) validPessoa(cep, logradouro, nome, nomeSocial, sexo_id, etnia_id, religiao_id, deficiencias_id, dia_id);
+		Funcionario funcionarioDto = (Funcionario)validPessoa(cep, logradouro, nome, nomeSocial, sexo_id, etnia_id, religiao_id, deficiencias_id, dia_id);
 		funcionarioDto.setData_admissao(data_admissao);
 		funcionarioDto.setCargo(cargo);
 		funcDao.save(funcionarioDto);
@@ -83,9 +93,8 @@ public class GerenciadorPessoa {
 		System.out.println(encontrada.getNome());
 		return encontrada;
 	}
-	
-	
-	
+
+
 	
 	
 

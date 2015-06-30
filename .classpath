@@ -31,5 +31,6 @@
 	<classpathentry kind="lib" path="C:/glassfish-4.1/glassfish4/glassfish/modules/javax.xml.registry-api.jar"/>
 	<classpathentry kind="lib" path="C:/glassfish-4.1/glassfish4/glassfish/modules/javax.xml.rpc-api.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

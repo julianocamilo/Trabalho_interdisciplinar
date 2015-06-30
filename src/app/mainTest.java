@@ -1,8 +1,14 @@
 package app;
 
 
-import bo.GerenciadorUsuario;
+import helper.RandomHelper;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import bo.GerenciadorUsuario;
+import dto.Professor;
 import dto.Usuario;
 
 public class mainTest {
@@ -50,14 +56,43 @@ public class mainTest {
 		
 		
 		try {
-			System.out.println("FAZENDO LOGIN.....");
-			Usuario d =GerenciadorUsuario.getUsuario("root", "root");
-			System.out.println(d.getPessoa());
+			//System.out.println("FAZENDO LOGIN.....");
+			//Usuario d =GerenciadorUsuario.getUsuario("root", "root");
+			//System.out.println(d.getPessoa());
+			
+			
+			
+			
+
+			Professor d = new Professor();
+			d.setId(RandomHelper.getIntRandom());
+			d.setNome("odin");
+			d.setNomeSocial("dsmdisjds");
+
+			EntityManagerFactory factory = Persistence.createEntityManagerFactory("interdisciplinar");
+			
+			EntityManager em = factory.createEntityManager(); 
+			    
+		    em.getTransaction().begin();    
+		    em.persist(d);
+		    em.getTransaction().commit();
+		    
+		    
+		    em.close();
+		    factory.close();
+			
+			
+			
+			
+			
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("ERRO" + e.getMessage());
 		}
+		
 		
 		
 		

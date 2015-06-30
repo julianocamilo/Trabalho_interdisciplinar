@@ -11,6 +11,9 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/x
 <class>dto.Usuario</class>
 
 <class>dto.Curso</class>
+<class>dto.Sexo</class>
+<class>dto.Religiao</class>
+<class>dto.Etnia</class>
 <properties>
 <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect" />
 <property name="hibernate.connection.show_sql" value="true" />

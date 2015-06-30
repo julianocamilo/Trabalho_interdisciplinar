@@ -1,19 +1,25 @@
 package model;
 
+import helper.HibernateHelper;
+import helper.RandomHelper;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import dto.Religiao;
+import dto.Sexo;
 
-public class ReligiaoDAO implements IDAO<Religiao> {
+public class ReligiaoDAO extends HibernateHelper<Religiao> implements IDAO<Religiao> {
 
 	public void save(Religiao religiao) throws Exception {
-		// TODO Auto-generated method stub
-		
+		religiao.setId(RandomHelper.getIntRandom());
+		executar(religiao);
 	}
 
 	public ArrayList<Religiao> getAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		HashMap<String, Object> args = new HashMap<String, Object>();
+		String query_string = "SELECT r from Religiao r ";
+		return  (ArrayList<Religiao>) consultar(query_string, args);
 	}
 
 
