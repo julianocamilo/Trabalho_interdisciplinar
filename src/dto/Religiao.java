@@ -18,6 +18,10 @@ public class Religiao {
 	
 	public Religiao(){}
 	
+	public Religiao(int id){
+		this.id = id;
+	}
+	
 	public Religiao(String descricao){
 		this.descricao = descricao;
 	}

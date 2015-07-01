@@ -1,7 +1,6 @@
 package bo;
 
 
-import helper.RandomHelper;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,52 +28,28 @@ public class GerenciadorPessoa {
 	
 	
 	
-	private static Pessoa validPessoa(int cep,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id, int dia_id  ) throws Exception{
-		
+	private static void validPessoa(String nome) throws Exception{
 		if(nome.isEmpty())
 			throw new Exception("Nome é obrigatório");
-	
-		
-		Pessoa pessoaDto = new Pessoa();
-		
-		pessoaDto.setCep(cep);
-		pessoaDto.setLogradouro(logradouro);
-		
-		pessoaDto.setNome(nome);
-		pessoaDto.setNomeSocial(nomeSocial);
-	
-		
-		return pessoaDto;
-		
 	}
 	
-	
 	public static void salvarProfessor(int cep, String formacao,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id, int dia_id ) throws Exception{
-		
-		if(nome.isEmpty())
-			throw new Exception("Nome é obrigatório");
-		
+		validPessoa(nome);
 		Professor professorDto = new Professor(nome,nomeSocial, cep, logradouro,formacao, etnia_id, sexo_id, religiao_id);
 		professorDao.save(professorDto);
-		
-		
-		
 	}
 	
 	
 	public static void salvarAluno(int cep, String fpagamento,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id, int dia_id ) throws Exception{
-		
-		Aluno alunoDto = (Aluno) validPessoa(cep, logradouro, nome, nomeSocial, sexo_id, etnia_id, religiao_id, deficiencias_id, dia_id);
-		alunoDto.setFpagamento(fpagamento);
+		validPessoa(nome);
+		Aluno alunoDto = new Aluno(nome, nomeSocial, cep, logradouro, fpagamento, etnia_id, sexo_id, religiao_id);
 		alunoDao.save(alunoDto);
 	}
 	
 	
 	public static void salvarFuncionario(int cep, String cargo, Date data_admissao,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id, int dia_id ) throws Exception{
-		
-		Funcionario funcionarioDto = (Funcionario)validPessoa(cep, logradouro, nome, nomeSocial, sexo_id, etnia_id, religiao_id, deficiencias_id, dia_id);
-		funcionarioDto.setData_admissao(data_admissao);
-		funcionarioDto.setCargo(cargo);
+		validPessoa(nome);
+		Funcionario funcionarioDto = new Funcionario(nome, nomeSocial, cep, logradouro, data_admissao, cargo, etnia_id, sexo_id, religiao_id);
 		funcDao.save(funcionarioDto);
 	}
 	

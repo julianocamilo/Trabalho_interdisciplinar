@@ -1,6 +1,6 @@
 package helper;
 
-import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -9,10 +9,14 @@ import java.util.Map.Entry;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceException;
+
 import javax.persistence.Query;
 
-import dto.Pessoa;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.AnnotationConfiguration;
+
+
 
 public class HibernateHelper<T>{
 
@@ -34,8 +38,9 @@ public class HibernateHelper<T>{
 		
 		EntityManager em =  this.getFactory();
 		    
-	    em.getTransaction().begin();    
+	    em.getTransaction().begin();   
 	    em.persist(obj);
+	   
 	    em.getTransaction().commit();
 	    
 	    
@@ -43,6 +48,22 @@ public class HibernateHelper<T>{
 	    closeFactory();
 		
 	}
+	
+	//APENAS TESTE
+	public void executarTeste(T obj) throws Exception{
+		
+		SessionFactory sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		session.save(obj);
+		
+		session.getTransaction().commit();
+		session.close();
+		
+		
+	}
+	
 	
 
 	public Collection<T> consultar(String query_string, HashMap<String, Object> args) throws Exception{
@@ -63,6 +84,8 @@ public class HibernateHelper<T>{
 		em.close();
 		closeFactory();
 		return res;
+		
+		
 	}
 	
 	

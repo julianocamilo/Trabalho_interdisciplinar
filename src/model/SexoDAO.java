@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import dto.Sexo;
-import dto.Usuario;
+
 
 public class SexoDAO extends HibernateHelper<Sexo> implements IDAO<Sexo> {
 

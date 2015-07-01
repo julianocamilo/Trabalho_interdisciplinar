@@ -4,8 +4,6 @@ import helper.HibernateHelper;
 import helper.RandomHelper;
 
 import java.util.ArrayList;
-
-import dto.Pessoa;
 import dto.Professor;
 
 public class ProfessorDAO extends HibernateHelper<Professor> implements IDAO<Professor>{

@@ -10,7 +10,8 @@ import org.junit.runners.Suite.SuiteClasses;
 	SexoTestCase.class,
 	ReligiaoTestCase.class,
 	EtniaTestCase.class,
-	PessoaTestCase.class})
+	PessoaTestCase.class,
+	DeficienciaTestCase.class})
 public class AllTests {
 
 }

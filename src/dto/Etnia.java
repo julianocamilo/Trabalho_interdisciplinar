@@ -3,7 +3,10 @@ package dto;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name="etnias")
@@ -17,10 +20,15 @@ public class Etnia {
 	private String descricao;
 	
 	public Etnia(){}
+	
+	public Etnia(int id){
+		this.id = id;
+	}
+	
 	public Etnia(String descricao){
 		this.descricao = descricao;
 	}
-	
+
 	public int getId() {
 		return id;
 	}

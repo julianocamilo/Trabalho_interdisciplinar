@@ -18,10 +18,16 @@ public class Sexo {
 	
 	public Sexo(){}
 	
+	
+	public Sexo(int id){
+		this.id = id;
+	}
+	
 	public Sexo(String descricao){
 		this.descricao = descricao;
 		
 	}
+	
 	
 	public int getId() {
 		return id;

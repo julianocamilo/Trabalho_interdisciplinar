@@ -1,10 +1,63 @@
 package dto;
 
-public class Deficiencia {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="deficiencias")
+public class Deficiencia implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7744268855775483643L;
+
+	@Id
+	@Column(name="Id_deficencia")
 	private int id;
+	
+	@Column(name="Descricao")
 	private String descricao;
+	
+	@Column(name="Grau")
 	private int grau;
+	
+	@ManyToMany(mappedBy="deficiencias")
+    private List<Pessoa> pessoas = new ArrayList<Pessoa>();
+	//private Set<Pessoa> pessoas = new HashSet<Pessoa>();
+	
+	/*@ManyToMany(fetch = FetchType.LAZY, mappedBy = "deficiencias")
+	public List<Pessoa> getPessoas() {
+		return this.pessoas;
+	}*/
+	
+	
+	public Deficiencia(){}
+	
+	public Deficiencia(int id){
+		this.id = id;
+	}
+	
+	public Deficiencia(String descricao, int grau){
+		this.descricao = descricao;
+		this.grau = grau;
+		
+	}
+	
+	public Deficiencia(int id, String descricao, int grau){
+		this.id = id;
+		this.descricao = descricao;
+	//	this.grau = grau;
+		
+	}
 	
 	
 	public int getId() {

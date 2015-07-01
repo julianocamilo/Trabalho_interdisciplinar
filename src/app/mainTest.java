@@ -1,15 +1,6 @@
 package app;
 
 
-import helper.RandomHelper;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import bo.GerenciadorUsuario;
-import dto.Professor;
-import dto.Usuario;
 
 public class mainTest {
 
@@ -54,7 +45,7 @@ public class mainTest {
 		
 		
 		
-		
+		/*
 		try {
 			//System.out.println("FAZENDO LOGIN.....");
 			//Usuario d =GerenciadorUsuario.getUsuario("root", "root");
@@ -94,7 +85,7 @@ public class mainTest {
 		}
 		
 		
-		
+		*/
 		
 
 	}

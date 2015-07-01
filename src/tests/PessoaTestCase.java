@@ -2,15 +2,10 @@ package tests;
 
 import static org.junit.Assert.*;
 import helper.RandomHelper;
-
-import java.util.ArrayList;
 import java.util.Date;
-
 import org.junit.Test;
-
-import dto.Funcionario;
 import bo.GerenciadorPessoa;
-import bo.GerenciadorSexo;
+
 
 
 public class PessoaTestCase {

@@ -29,6 +29,17 @@ public class Funcionario extends Pessoa implements Serializable  {
 	
 	@Column(name="Cargo")
 	private String cargo;
+	
+	public Funcionario(){}
+	
+	public Funcionario(String nome, String nomeSocial, int cep, String logradouro, Date data_admissao,String cargo, int etnia_id, int sexo_id, int religiao_id){
+		
+		super(nome, nomeSocial,  cep, logradouro,  etnia_id,  sexo_id,  religiao_id);
+		this.data_admissao = data_admissao;
+		this.cargo = cargo;
+		
+	}
+	
 
 	public Date getData_admissao() {
 		return data_admissao;

@@ -5,7 +5,7 @@ import java.util.Date;
 public class Turma {
 
 	private int id;
-	private int curso_id;
+	
 	private int capacidade;
 	private Date data_fim;
 	private Date data_inicio;
@@ -17,9 +17,7 @@ public class Turma {
 		return null;
 	}
 	
-	public void setCurso_id(int curso_id) {
-		this.curso_id = curso_id;
-	}
+	
 	public int getCapacidade() {
 		return capacidade;
 	}

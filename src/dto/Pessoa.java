@@ -1,35 +1,9 @@
 package dto;
 
 import java.io.Serializable;
-
-
-
-
-
-
-
-
-
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -56,51 +30,40 @@ public class Pessoa implements Serializable {
 	protected String nomeSocial;
 
 	
-	/*
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
-	private Etnia etnia;
-	
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
-	private Religiao religiao;
-	
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
-	private Sexo sexo;
-	*/
-	/*
-	
-	@Id
-	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name="property", value="etnias"))
-	@GeneratedValue(generator = "generator")
-	@Column(name = "Id_etnia")
-	protected int etnia_id;
-	
-	@Id
-	@GenericGenerator(name = "generator2", strategy = "foreign", parameters = @Parameter(name="property", value="religiao"))
-	@GeneratedValue(generator = "generator2")
-	@Column(name = "Id_religiao")
-	protected int religiao_id;
-	
-	@Id
-	@GenericGenerator(name = "generator3", strategy = "foreign", parameters = @Parameter(name="property", value="sexo"))
-	@GeneratedValue(generator = "generator3")
-	@Column(name = "Id_sexo")
-	protected int sexo_id;*/
 	
 	
-	@ManyToOne
+	
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="Id_etnia", referencedColumnName="Id_etnia")
 	private Etnia etnia;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="Id_sexo", referencedColumnName="Id_sexo")
 	private Sexo sexo;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="Id_religiao", referencedColumnName="Id_religiao")
 	private Religiao religiao;
+	
+	
+	
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "defic_pessoas", joinColumns = { @JoinColumn(name = "Id_pessoa") }, 
+			inverseJoinColumns = { @JoinColumn(name = "Id_deficencia") })
+	private List<Deficiencia> deficiencias = new ArrayList<Deficiencia>() ;
+	
+	/*
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "defic_pessoas", catalog = "interdisciplinar", joinColumns = { @JoinColumn(name = "Id_pessoa", nullable = true, updatable = true) }, 
+			inverseJoinColumns = { @JoinColumn(name = "Id_deficencia", 
+					nullable = true, updatable = true) })
+	public Set<Deficiencia> getDeficiencias() {
+		return this.deficiencias;
+	}*/
+	
+	
+	
 	
 	
 	public Pessoa(){}
@@ -110,9 +73,18 @@ public class Pessoa implements Serializable {
 		this.logradouro = logradouro;
 		this.cep = cep;
 		
-		this.etnia.setId(etnia_id);
-		this.sexo.setId(sexo_id);
-		this.religiao.setId(religiao_id);
+		this.etnia		= new Etnia(etnia_id);
+		this.sexo		= new Sexo(sexo_id);
+		this.religiao	= new Religiao(religiao_id);
+		
+		
+		//List<Deficiencia> ld = new ArrayList<Deficiencia>();
+		
+		//ld.add(new Deficiencia(8371116));
+		//this.deficiencias = ld;
+		//this.deficiencias.add(new Deficiencia(8371116));
+		//this.deficiencias.add(new Deficiencia(675577231));
+		
 	}
 	
 	public Usuario getUsuario() {

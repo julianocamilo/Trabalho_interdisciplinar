@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import dto.Religiao;
-import dto.Sexo;
 
 public class ReligiaoDAO extends HibernateHelper<Religiao> implements IDAO<Religiao> {
 
