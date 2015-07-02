@@ -1,5 +1,7 @@
 package dto;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,8 +9,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="sexo")
-public class Sexo {
+public class Sexo implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2881400164019567850L;
+
 	@Id
 	@Column(name="Id_sexo")
 	private int id;
