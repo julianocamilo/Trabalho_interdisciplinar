@@ -1,25 +1,63 @@
 package dto;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
-public class Venda {
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
+import javax.persistence.Id;
+
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="vendas")
+public class Venda implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3717694400422744776L;
+
+	@Id
+	@Column(name="Id_venda")
 	private int id;
-	private int pesosa_id;
+	
+	//Many to One Pessoa
+	//private int pesosa_id;
+	/*@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="Id_pessoa", referencedColumnName="Id_pessoa")
+	private Pessoa pessoa;
+	*/
+	
+	/*public Pessoa getPessoa() {
+		return pessoa;
+	}
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}*/
+	@Column(name="Data")
 	private Date data;
+	
+	@Column(name="Valor_total")
 	private double valor_total;
+	
+	
+	public Venda(){}
+	public Venda(Date data, double valor_total, int pessoa_id, ArrayList<Integer> items_id){
+		this.data = data;
+		this.valor_total = valor_total;
+	}
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getPesosa_id() {
-		return pesosa_id;
-	}
-	public void setPesosa_id(int pesosa_id) {
-		this.pesosa_id = pesosa_id;
-	}
+	
 	public Date getData() {
 		return data;
 	}
