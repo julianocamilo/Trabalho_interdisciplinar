@@ -17,6 +17,8 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/x
 <class>dto.Deficiencia</class>
 <class>dto.TipoFiliacao</class>
 
+<class>dto.Venda</class>
+
 <properties>
 <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect" />
 <property name="hibernate.connection.show_sql" value="true" />
