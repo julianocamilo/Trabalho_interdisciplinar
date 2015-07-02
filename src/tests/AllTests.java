@@ -11,7 +11,11 @@ import org.junit.runners.Suite.SuiteClasses;
 	ReligiaoTestCase.class,
 	EtniaTestCase.class,
 	PessoaTestCase.class,
-	DeficienciaTestCase.class})
+	DeficienciaTestCase.class,
+	VendaTestCase.class, 
+	ItemTestCase.class})
+
+
 public class AllTests {
 
 }

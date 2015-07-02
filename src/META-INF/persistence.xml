@@ -18,6 +18,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/x
 <class>dto.TipoFiliacao</class>
 
 <class>dto.Venda</class>
+<class>dto.Item</class>
 
 <properties>
 <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect" />
