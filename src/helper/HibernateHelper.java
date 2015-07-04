@@ -9,7 +9,6 @@ import java.util.Map.Entry;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
 import javax.persistence.Query;
 
 import org.hibernate.Session;
@@ -23,6 +22,12 @@ public class HibernateHelper<T>{
 	
 	private EntityManagerFactory factory;
 	
+	
+	public static EntityManager getFactory2(){
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("interdisciplinar");
+		return factory.createEntityManager();
+	}
+	
 	private EntityManager getFactory(){
 		
 		factory = Persistence.createEntityManagerFactory("interdisciplinar");
@@ -34,23 +39,30 @@ public class HibernateHelper<T>{
 	}
 	
 	
-	public void executar(T obj) throws Exception{
+	protected void executar(T obj) throws Exception{
 		
 		EntityManager em =  this.getFactory();
-		    
-	    em.getTransaction().begin();   
+		em.getTransaction().begin();   
 	    em.persist(obj);
-	   
 	    em.getTransaction().commit();
-	    
-	    
 	    em.close();
 	    closeFactory();
-		
 	}
 	
+	
+	protected void atualizar(T obj) throws Exception{
+		
+		EntityManager em =  this.getFactory();
+		em.getTransaction().begin(); 
+		em.merge(obj);
+		em.getTransaction().commit();
+		em.close();
+	}
+	
+	
+	
 	//APENAS TESTE
-	public void executarTeste(T obj) throws Exception{
+	protected void executarTeste(T obj) throws Exception{
 		
 		SessionFactory sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
@@ -66,7 +78,7 @@ public class HibernateHelper<T>{
 	
 	
 
-	public Collection<T> consultar(String query_string, HashMap<String, Object> args) throws Exception{
+	protected Collection<T> consultar(String query_string, HashMap<String, Object> args) throws Exception{
 		
 		
 		EntityManager em =  this.getFactory();
@@ -89,7 +101,7 @@ public class HibernateHelper<T>{
 	}
 	
 	
-	public T selecionar(T obj) throws Exception{
+	protected T selecionar(T obj) throws Exception{
 		
 		EntityManager em =  this.getFactory();
 		T obj_encontrado = (T) em.find(obj.getClass() , obj);

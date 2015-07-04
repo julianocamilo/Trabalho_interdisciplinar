@@ -5,10 +5,13 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 @Table(name="item")
 public class Item implements Serializable{
 
@@ -28,8 +31,21 @@ public class Item implements Serializable{
 	@Column(name="Valor")	
 	private double valor;
 	
+	
+	
+	
 	public Item(){}
+	public Item(int id){
+		this.id = id;
+	}
+	
 	public Item(String descricao, double valor){
+		this.descricao = descricao;
+		this.valor = valor;
+	}
+	
+	public Item(int id, String descricao, double valor){
+		this.id = id;
 		this.descricao = descricao;
 		this.valor = valor;
 	}

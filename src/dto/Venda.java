@@ -6,9 +6,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -27,10 +28,11 @@ public class Venda implements Serializable {
 	
 	//Many to One Pessoa
 	//private int pesosa_id;
-	/*@ManyToOne(fetch=FetchType.LAZY)
+	
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="Id_pessoa", referencedColumnName="Id_pessoa")
 	private Pessoa pessoa;
-	*/
+	
 	
 	/*public Pessoa getPessoa() {
 		return pessoa;
@@ -38,6 +40,7 @@ public class Venda implements Serializable {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}*/
+	
 	@Column(name="Data")
 	private Date data;
 	
@@ -46,9 +49,15 @@ public class Venda implements Serializable {
 	
 	
 	public Venda(){}
+	
 	public Venda(Date data, double valor_total, int pessoa_id, ArrayList<Integer> items_id){
 		this.data = data;
 		this.valor_total = valor_total;
+		
+		
+		pessoa = new Pessoa(pessoa_id);
+		
+		
 	}
 	
 	public int getId() {

@@ -6,9 +6,9 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -30,14 +30,17 @@ public class Deficiencia implements Serializable{
 	@Column(name="Grau")
 	private int grau;
 	
-	@ManyToMany(mappedBy="deficiencias")
+	@ManyToMany(mappedBy="defis")
     private List<Pessoa> pessoas = new ArrayList<Pessoa>();
-	//private Set<Pessoa> pessoas = new HashSet<Pessoa>();
 	
-	/*@ManyToMany(fetch = FetchType.LAZY, mappedBy = "deficiencias")
+	/*@OneToMany(mappedBy = "deficiencia")
+	private List<DeficienciaPessoa> deficienciasteste = new ArrayList<DeficienciaPessoa>();*/
+	
+	
+	//@ManyToMany(fetch = FetchType.LAZY, mappedBy = "defis")
 	public List<Pessoa> getPessoas() {
 		return this.pessoas;
-	}*/
+	}
 	
 	
 	public Deficiencia(){}

@@ -12,10 +12,6 @@ import javax.persistence.Table;
 @Table(name="cursos")
 public class Curso implements Serializable{
 
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6036466372809289683L;
 
 	@Id
@@ -26,6 +22,16 @@ public class Curso implements Serializable{
 	private String descricao;
 	
 
+	public Curso(){}
+	
+	public Curso(String descricao){
+		this.descricao = descricao;
+	}
+	public Curso(int id){
+		this.id = id;
+	}
+	
+	
 	public int getId() {
 		return id;
 	}

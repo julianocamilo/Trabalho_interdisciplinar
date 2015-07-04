@@ -1,17 +1,37 @@
 package dto;
 
-public class Servico {
+import java.io.Serializable;
 
-	private int id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="servicos")
+public class Servico extends Item implements Serializable {
+
+	private static final long serialVersionUID = -8928541407985626827L;
+	
+	@Column(name="Especificacao")
 	private String especificacao;
+	
+	@Column(name="Duracao")
 	private int duracao;
 	
-	public int getId() {
-		return id;
+	public Servico(){}
+	
+	public Servico(String descricao, double valor, String especificacao, int duracao){
+		super(descricao,valor);
+		this.especificacao = especificacao;
+		this.duracao = duracao;
 	}
-	public void setId(int id) {
-		this.id = id;
+	
+	public Servico(int id, String descricao, double valor, String especificacao, int duracao){
+		super(id, descricao,valor);
+		this.especificacao = especificacao;
+		this.duracao = duracao;
 	}
+	
 	public String getEspecificacao() {
 		return especificacao;
 	}

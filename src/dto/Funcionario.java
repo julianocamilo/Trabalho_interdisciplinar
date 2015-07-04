@@ -1,7 +1,9 @@
 package dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,9 +34,9 @@ public class Funcionario extends Pessoa implements Serializable  {
 	
 	public Funcionario(){}
 	
-	public Funcionario(String nome, String nomeSocial, int cep, String logradouro, Date data_admissao,String cargo, int etnia_id, int sexo_id, int religiao_id){
+	public Funcionario(String nome, String nomeSocial, int cep, String logradouro, Date data_admissao,String cargo, int etnia_id, int sexo_id, int religiao_id, ArrayList<Integer> deficiencias){
 		
-		super(nome, nomeSocial,  cep, logradouro,  etnia_id,  sexo_id,  religiao_id);
+		super(nome, nomeSocial,  cep, logradouro,  etnia_id,  sexo_id,  religiao_id, deficiencias);
 		this.data_admissao = data_admissao;
 		this.cargo = cargo;
 		

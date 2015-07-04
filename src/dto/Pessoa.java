@@ -1,9 +1,16 @@
 package dto;
 
+import helper.RandomHelper;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.*;
+
+import org.hibernate.annotations.Fetch;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -30,6 +37,15 @@ public class Pessoa implements Serializable {
 	protected String nomeSocial;
 
 	
+	/*@OneToMany(fetch=FetchType.LAZY, mappedBy="pessoas")
+	@Transient
+	HashSet<Telefone> telefones = new HashSet<Telefone>();
+	
+	//@OneToMany(mappedBy="pessoas")
+	public HashSet<Telefone> getTelefones(){
+		return this.telefones;
+	}
+	*/
 	
 	
 	
@@ -48,10 +64,10 @@ public class Pessoa implements Serializable {
 	
 	
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "defic_pessoas", joinColumns = { @JoinColumn(name = "Id_pessoa") }, 
 			inverseJoinColumns = { @JoinColumn(name = "Id_deficencia") })
-	private List<Deficiencia> deficiencias = new ArrayList<Deficiencia>() ;
+	private Set<Deficiencia> defis = new HashSet<Deficiencia>() ;
 	
 	/*
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -62,12 +78,18 @@ public class Pessoa implements Serializable {
 		return this.deficiencias;
 	}*/
 	
-	
+	/* @OneToMany(mappedBy = "pessoa")
+	 private List<DeficienciaPessoa> deficienciasteste = new ArrayList<DeficienciaPessoa>();*/
 	
 	
 	
 	public Pessoa(){}
-	public Pessoa(String nome, String nomSocial, int cep, String logradouro, int etnia_id, int sexo_id, int religiao_id){
+	
+	public Pessoa(int id){
+		this.id =id;
+	}
+	
+	public Pessoa(String nome, String nomSocial, int cep, String logradouro, int etnia_id, int sexo_id, int religiao_id, ArrayList<Integer> deficiencias){
 		this.nome = nome;
 		this.nomeSocial = nomSocial;
 		this.logradouro = logradouro;
@@ -77,16 +99,45 @@ public class Pessoa implements Serializable {
 		this.sexo		= new Sexo(sexo_id);
 		this.religiao	= new Religiao(religiao_id);
 		
+		if(deficiencias == null) return;
 		
-		//List<Deficiencia> ld = new ArrayList<Deficiencia>();
-		
-		//ld.add(new Deficiencia(8371116));
-		//this.deficiencias = ld;
-		//this.deficiencias.add(new Deficiencia(8371116));
-		//this.deficiencias.add(new Deficiencia(675577231));
-		
+		for (Integer deficiencia_id : deficiencias) {
+			this.defis.add(new Deficiencia(deficiencia_id));
+		}
 	}
 	
+	public Etnia getEtnia() {
+		return etnia;
+	}
+
+	public void setEtnia(Etnia etnia) {
+		this.etnia = etnia;
+	}
+
+	public Sexo getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(Sexo sexo) {
+		this.sexo = sexo;
+	}
+
+	public Religiao getReligiao() {
+		return religiao;
+	}
+
+	public void setReligiao(Religiao religiao) {
+		this.religiao = religiao;
+	}
+
+	public Set<Deficiencia> getDefis() {
+		return defis;
+	}
+
+	public void setDefis(Set<Deficiencia> defis) {
+		this.defis = defis;
+	}
+
 	public Usuario getUsuario() {
 		return usuario;
 	}

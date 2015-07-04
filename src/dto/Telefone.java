@@ -1,10 +1,42 @@
 package dto;
 
-public class Telefone {
-	private int id;
-	private String telefone;
-	private int pessoa_id;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="telefones")
+public class Telefone implements Serializable{
 	
+	private static final long serialVersionUID = 6991375454214887838L;
+
+	@Id
+	@Column(name="Id_telefone")
+	private int id;
+	
+	@Column(name="Telefones")
+	private String telefone;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="Id_pessoa", referencedColumnName="Id_pessoa")
+	private Pessoa pessoa;
+	
+	
+	public Telefone(){}
+	public Telefone(String telefone, int pessoa_id){
+		 this.id = id;
+		 this.telefone = telefone;
+		 
+		 this.pessoa = new Pessoa(pessoa_id);
+		 
+	}
 	
 	//LazyLoad
 	public Pessoa getPessoa(){
@@ -28,13 +60,11 @@ public class Telefone {
 		this.telefone = telefone;
 	}
 
-	public int getPessoa_id() {
-		return pessoa_id;
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
-	public void setPessoa_id(int pessoa_id) {
-		this.pessoa_id = pessoa_id;
-	}
+	
 	
 	
 	

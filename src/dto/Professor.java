@@ -1,6 +1,9 @@
 package dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -19,9 +22,9 @@ public class Professor extends Pessoa implements Serializable{
 	
 	public Professor(){}
 	
-	public Professor(String nome, String nomeSocial, int cep, String logradouro, String formacao, int etnia_id, int sexo_id, int religiao_id){
+	public Professor(String nome, String nomeSocial, int cep, String logradouro, String formacao, int etnia_id, int sexo_id, int religiao_id, ArrayList<Integer> deficiencias){
 		
-		super(nome, nomeSocial,  cep, logradouro,  etnia_id,  sexo_id,  religiao_id);
+		super(nome, nomeSocial,  cep, logradouro,  etnia_id,  sexo_id,  religiao_id, deficiencias);
 		this.formacao = formacao;
 		
 	}

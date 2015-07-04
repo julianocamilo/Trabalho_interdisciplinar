@@ -13,7 +13,15 @@ import org.junit.runners.Suite.SuiteClasses;
 	PessoaTestCase.class,
 	DeficienciaTestCase.class,
 	VendaTestCase.class, 
-	ItemTestCase.class})
+	ItemTestCase.class,
+	ProdutoTestCase.class,
+	ServicoTestCase.class, 
+	TurmaTestCase.class,
+	CursoTestCase.class,
+	TelefoneTestCase.class,
+	TipoFiliacaoTestCase.class,
+	DiaTestCase.class,
+	HorarioTestCase.class})
 
 
 public class AllTests {
