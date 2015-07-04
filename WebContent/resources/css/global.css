@@ -1,0 +1,17 @@
+body {
+	line-height: 1;
+	background: rgb(40,40,40);	
+}
+
+.body-center {
+	margin: 1em 220px;
+	border: 1px solid;	
+	border-radius: 5px;
+	background: url("../resources/images/light_alu.png");]
+	padding: 5px 5px 5px 5px;
+	height: 80%;
+	width: 66%;
+	position: absolute;
+	padding-top: 20px;
+	padding-left: 20px;
+}
