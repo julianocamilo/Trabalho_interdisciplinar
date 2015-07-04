@@ -34,21 +34,21 @@ public class GerenciadorPessoa {
 			throw new Exception("Nome é obrigatório");
 	}
 	
-	public static void salvarProfessor(int cep, String formacao,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id, int dia_id ) throws Exception{
+	public static void salvarProfessor(int cep, String formacao,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id) throws Exception{
 		validPessoa(nome);
 		Professor professorDto = new Professor(nome,nomeSocial, cep, logradouro,formacao, etnia_id, sexo_id, religiao_id, deficiencias_id);
 		professorDao.save(professorDto);
 	}
 	
 	
-	public static void salvarAluno(int cep, String fpagamento,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id, int dia_id ) throws Exception{
+	public static void salvarAluno(int cep, String fpagamento,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id ) throws Exception{
 		validPessoa(nome);
 		Aluno alunoDto = new Aluno(nome, nomeSocial, cep, logradouro, fpagamento, etnia_id, sexo_id, religiao_id, deficiencias_id);
 		alunoDao.save(alunoDto);
 	}
 	
 	
-	public static void salvarFuncionario(int cep, String cargo, Date data_admissao,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id, int dia_id ) throws Exception{
+	public static void salvarFuncionario(int cep, String cargo, Date data_admissao,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id) throws Exception{
 		validPessoa(nome);
 		Funcionario funcionarioDto = new Funcionario(nome, nomeSocial, cep, logradouro, data_admissao, cargo, etnia_id, sexo_id, religiao_id, deficiencias_id);
 		funcDao.save(funcionarioDto);

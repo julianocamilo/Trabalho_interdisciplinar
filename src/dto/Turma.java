@@ -43,7 +43,13 @@ public class Turma {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "matricula", joinColumns = { @JoinColumn(name = "Id_turma") }, 
 			inverseJoinColumns = { @JoinColumn(name = "Id_pessoa") })
-	private Set<Aluno> alunos = new HashSet<Aluno>() ;
+	private Set<Aluno> alunos = new HashSet<Aluno>();
+	
+	/*
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "Horario_Turmas", joinColumns = { @JoinColumn(name = "Id_turma") }, 
+			inverseJoinColumns = { @JoinColumn(name = "Id_pessoa") })
+	private Set<Aluno> alunos = new HashSet<Aluno>() ;*/
 	
 	
 		
@@ -81,6 +87,9 @@ public class Turma {
 		}
 		
 	}
+	
+	
+	
 	
 	
 	
