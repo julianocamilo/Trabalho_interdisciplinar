@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core">
+<h:head>
+<title>Cadastro de Venda</title>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
+<h:outputStylesheet library="css" name="style.css"/>
+<h:outputStylesheet library="css" name="iconic.css"/>
+<h:outputStylesheet library="css" name="global.css"/>
+<h:outputScript library="javascript" name="jquery-2.1.4.min.js"/>
+<h:outputScript library="javascript" name="prefix-free.js"/>
+<h:outputScript library="javascript" name="application.js"/>
+</h:head>
+<h:body>	
+	<ui:insert name="menu" >
+		<ui:include src="menu.xhtml" />
+	</ui:insert>		
+	<div class="body-center">
+		<center>
+			<h:outputLabel class="title-form"> Cadastro de Venda</h:outputLabel>
+		</center>	
+		<hr/>
+		<h:form id="form-venda" prependId="false">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<h:outputLabel>Data</h:outputLabel>
+			<h:inputText id="data" value="#{vendaController.data}"/>
+			
+			<h:outputLabel>Valor</h:outputLabel>
+			<h:inputText disabled="true" id="valor" class="apenas-valor" size="10" maxlength="10" value="#{vendaController.valor}"/>
+						
+			<h:outputLabel>Id Pessoa</h:outputLabel>
+			<h:inputText id="id_pessoa" class="apenas-numero" value="#{vendaController.id_pessoa}"/>
+			<br/>					
+			<div class="table_wraper">
+				<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<h:outputLabel>Id do Item</h:outputLabel>
+				<h:inputText value="#{vendaController.id_item}"/>
+				&nbsp;&nbsp;
+				<h:commandButton value="Adicionar" id="add_item" action="#{vendaController.addItem}" />
+				
+				<h:dataTable value="#{vendaController.itensList}" id="table_itens" var="itens" rendered="#{vendaController.itensList.size() > 0}">					
+					<h:column>
+						<f:facet name="header"> Id </f:facet>
+						<h:outputText value="#{itens.id}" />						
+					</h:column>
+					<h:column>
+						<f:facet name="header"> Nome </f:facet>
+						<h:outputText value="#{itens.nome}" />						
+					</h:column>
+					<h:column>
+						<f:facet name="header"> Tipo </f:facet>
+						<h:outputText value="#{itens.tipo}" />						
+					</h:column>
+					<h:column>
+						<f:facet name="header"> Valor </f:facet>
+						<h:outputText value="#{itens.valor}" />						
+					</h:column>
+				</h:dataTable>
+							
+			</div>
+			<br/>
+			<br/>
+			<hr />
+			<h:commandButton value="Salvar" id="button" class="center" action="#{vendaController.save}" />
+			<br/>
+			<h:messages id="msgErro" class="message"></h:messages>
+			<h:outputText value="#{vendaController.messageError}"/>		
+		</h:form>
+	</div>
+</h:body>
+</html>

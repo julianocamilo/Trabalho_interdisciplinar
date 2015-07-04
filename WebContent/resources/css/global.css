@@ -1,0 +1,152 @@
+body {
+	line-height: 1;
+	background: rgb(40,40,40);	
+}
+
+.body-center {
+	margin: 1em auto;
+	border: 1px solid;	
+	border-radius: 5px;
+	background: url("../resources/images/light_alu.png");]
+	padding: 5px 5px 5px 5px;
+	height: 700px;
+	width: 940px;
+	padding-top: 20px;
+	padding-left: 20px;
+}
+
+hr {
+	margin: 0px auto;
+	width: 80%;
+	height: 2px;
+	border-radius: 10px;
+	background: rgb(32,32,32);
+	border: white;
+	margin-top: 5px;
+}
+
+.title-form {
+	font-size: 18px;
+	font-weight: bold;
+	margin: 0px auto;
+	text-align: center;
+}
+
+label:not(title-form) {
+	font-size: 16px;
+	text-align: left;
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+input[type="text"] {
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid black;
+	background: white;
+	margin-top: 5px;
+}
+
+input[type="submit"], input[type="button"] {
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+	border-radius: 5px;
+	width: auto;	
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	background: #6B238E;
+	border: 1px solid black;
+	cursor:pointer;   		
+}
+
+.center {
+	margin-right: 50%;
+	margin-top: 1em;	
+	float: right;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover {
+	background: #C0D9D9;
+	color: black;
+}	
+
+form {
+	margin-top: 1em;
+}
+
+.message {
+	background-color: #FF0000;
+	border-radius: 10px;	
+	margin: 50px auto;	
+	height: 50px;
+	width: 450px;		
+}
+
+.message li {
+	display: block;
+	padding-left: 14px;
+	padding-top: 14px;
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+	list-style-type: none;
+}
+
+.message a {
+	float: right;
+	padding-right: 5px;
+	color: white;
+	font-weight: bold;
+	text-decoration: none;	
+}
+
+
+///*** table ***////
+
+.table_wraper {
+	width: 800px;
+	margin: 1em auto;
+}
+
+table {
+  border: 1px solid black;
+  border-spacing: 0px;
+  margin: 1em auto;
+  display: blocked;
+  width: 800px;
+}
+
+table thead tr {
+  font-family: Arial, monospace;
+  font-size: 14px;
+}
+
+table thead tr th {
+  border-bottom: 2px solid black;
+  border-top: 1px solid black;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0px;
+  padding: 2px;
+  background-color: #cccccc;
+}
+
+table tr {
+  font-family: arial, monospace;
+  color: black;
+  font-size:14px;
+  background-color: white;
+}
+
+table tr.odd {
+  background-color: #AAAAAA;
+}
+
+table tr td, th {
+  border: 1px solid black;
+  padding: 2px;
+}
