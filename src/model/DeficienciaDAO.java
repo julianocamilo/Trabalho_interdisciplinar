@@ -23,7 +23,6 @@ public class DeficienciaDAO extends HibernateHelper<Deficiencia> implements IDAO
 	}
 
 	public Deficiencia get(Deficiencia obj) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return selecionar(obj, obj.getId());
 	}
 }

@@ -11,8 +11,19 @@ import dto.Venda;
 
 public class VendaDAO extends HibernateHelper<Venda> implements IDAO<Venda> {
 
+	private int id_created;
+	
+	public int getId_created() {
+		return id_created;
+	}
+
+	public void setId_created(int id_created) {
+		this.id_created = id_created;
+	}
+
 	public void save(Venda Venda) throws Exception {
-		Venda.setId(RandomHelper.getIntRandom());
+		this.id_created = RandomHelper.getIntRandom();
+		Venda.setId(this.id_created);
 		executar(Venda);
 	}
 
@@ -24,7 +35,7 @@ public class VendaDAO extends HibernateHelper<Venda> implements IDAO<Venda> {
 	}
 
 	public Venda get(Venda obj) throws Exception {
-		return null;
+		return selecionar(obj, obj.getId());
 	}
 	
 	

@@ -17,12 +17,18 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/x
 <class>dto.Deficiencia</class>
 <class>dto.TipoFiliacao</class>
 
+
 <class>dto.Venda</class>
 <class>dto.Item</class>
 <class>dto.Produto</class>
 <class>dto.Servico</class>
 
 <class>dto.Telefone</class>
+
+<class>dto.Horario</class>
+<class>dto.Turma</class>
+
+<class>dto.Filiacao</class>
 
 
 <properties>

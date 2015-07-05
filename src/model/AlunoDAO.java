@@ -14,18 +14,16 @@ import dto.Telefone;
 
 public class AlunoDAO extends HibernateHelper<Aluno> implements IDAO<Aluno> {
 
+	private int id_created;
+	
+	public int getId_created() {
+		return this.id_created;
+	}
+	
 	public void save(Aluno obj) throws Exception {
-		obj.setId(RandomHelper.getIntRandom());
+		this.id_created = RandomHelper.getIntRandom();
+		obj.setId(this.id_created);
 	    executar(obj);
-		
-	
-		
-		//Telefone telefone = new Telefone(RandomHelper.getIntRandom(), "95081446");
-		//Telefone telefone2 = new Telefone(RandomHelper.getIntRandom(), "89081786");
-
-		
-		
-	
 	}
 
 	public ArrayList<Aluno> getAll() throws Exception {

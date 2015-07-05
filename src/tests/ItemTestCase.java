@@ -2,7 +2,11 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
+
+import dto.Item;
 import bo.GerenciadorItem;
 
 
@@ -11,7 +15,7 @@ public class ItemTestCase {
 	@Test
 	public void saveItemSuccess() {
 		try {
-			bo.GerenciadorItem.salvar("trans", 23);
+			bo.GerenciadorItem.salvar("lol", 666);
 		} 
 		catch (Exception e) {
 			fail("ERRO SALVAR Item: " + e.getMessage());
@@ -27,6 +31,13 @@ public class ItemTestCase {
 	@Test
 	public void GetAllItemSuccess() throws Exception {
 		GerenciadorItem.listar();
+	}
+	
+	@Test
+	public void GetOneItemSuccess() throws Exception {
+		Item item = GerenciadorItem.selecionar(1199633220);
+		System.out.println("QUantidade" + item.getDescricao());
+		
 	}
 	
 	

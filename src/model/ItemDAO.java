@@ -24,7 +24,7 @@ public class ItemDAO extends HibernateHelper<Item> implements IDAO<Item> {
 	}
 
 	public Item get(Item obj) throws Exception {
-		return null;
+		return selecionar(obj, obj.getId());
 	}
 	
 	

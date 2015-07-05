@@ -1,9 +1,14 @@
 package dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,7 +27,14 @@ public class Produto extends Item implements Serializable {
 	@Column(name="Local")
 	private String local;
 	
+	@ManyToMany(mappedBy="produtos")
+    private Set<Turma> turmas = new HashSet<Turma>();
+	
 	public Produto(){}
+	
+	public Produto(int id){
+		super(id);
+	}
 	
 	public Produto(String descricao, double valor, int quantidade, String local){
 		super(descricao, valor);

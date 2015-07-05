@@ -22,4 +22,8 @@ public class GerenciadorItem {
 	}
 	
 	
+	public static Item selecionar(int item_id)throws Exception{
+		return itemDao.get(new Item(item_id));
+	}
+	
 }

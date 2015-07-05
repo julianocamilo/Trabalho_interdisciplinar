@@ -1,32 +1,52 @@
 package dto;
 
-public class ItemVenda {
+import java.io.Serializable;
 
-	private int item_id;
-	private int venda_id;
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name="item_venda")
+@AssociationOverrides({
+	@AssociationOverride(name="pk.venda", joinColumns=@JoinColumn(name="Id_venda")),
+	@AssociationOverride(name="pk.item", joinColumns=@JoinColumn(name="Id_item")) })
+public class ItemVenda implements Serializable{
+
+	private static final long serialVersionUID = -5622554388900873849L;
+	
+	private ItemVendaId pk = new ItemVendaId();
+	
 	
 	private int quantidade;
+	
+	
 	private double valor;
 	
+	@EmbeddedId
+	public ItemVendaId getPk(){
+		return pk;
+	}
 	
-	public int getItem_id() {
-		return item_id;
+	
+	public void setPk(ItemVendaId pk) {
+		this.pk = pk;
 	}
-	public void setItem_id(int item_id) {
-		this.item_id = item_id;
-	}
-	public int getVenda_id() {
-		return venda_id;
-	}
-	public void setVenda_id(int venda_id) {
-		this.venda_id = venda_id;
-	}
+
+	@Column(name="Quantidade")
 	public int getQuantidade() {
 		return quantidade;
 	}
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
+	
+	@Column(name="Valor_unitario")
 	public double getValor() {
 		return valor;
 	}
@@ -34,6 +54,25 @@ public class ItemVenda {
 		this.valor = valor;
 	}
 	
+	
+	@Transient
+	public Venda getVenda(){
+		return getPk().getVenda();
+	}
+	
+	public void setVenda(Venda venda){
+		getPk().setVenda(venda);
+	}
+	
+	
+	@Transient
+	public Item getItem(){
+		return getPk().getItem();
+	}
+	
+	public void setItem(Item item){
+		getPk().setItem(item);
+	}
 	
 	
 }

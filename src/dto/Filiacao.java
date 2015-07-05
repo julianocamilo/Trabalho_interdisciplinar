@@ -1,44 +1,71 @@
 package dto;
 
-public class Filiacao {
+import java.io.Serializable;
 
-	private int filiacao_id;
+
+
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="filiacao")
+public class Filiacao implements Serializable {
+
+	private static final long serialVersionUID = -3260809670151112163L;
+
+	@Id
+	@Column(name="Id_filiacao")
+	private int id;
+	
+	@Column(name="Descricao")
 	private String descricao;
-	private int tipo_id;
-	private int pessoa_id;
 	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="Id_pessoa")
+	private Pessoa pessoa;
 	
-	public Pessoa getPessoa(){
-		return null;
-	}
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="Id_tipo")
+	private TipoFiliacao tipo;
 	
-	public TipoFiliacao getTipoFiliacao(){
-		return null;
+	public int getId() {
+		return id;
 	}
-	
-	public int getFiliacao_id() {
-		return filiacao_id;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	public void setFiliacao_id(int filiacao_id) {
-		this.filiacao_id = filiacao_id;
+
+	public Pessoa getPessoa() {
+		return pessoa;
 	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	public void setTipo(TipoFiliacao tipo) {
+		this.tipo = tipo;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+
 	public String getDescricao() {
 		return descricao;
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public int getTipo_id() {
-		return tipo_id;
-	}
-	public void setTipo_id(int tipo_id) {
-		this.tipo_id = tipo_id;
-	}
-	public int getPessoa_id() {
-		return pessoa_id;
-	}
-	public void setPessoa_id(int pessoa_id) {
-		this.pessoa_id = pessoa_id;
-	}
-	
 }

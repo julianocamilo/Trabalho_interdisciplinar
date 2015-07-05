@@ -9,12 +9,16 @@ import dto.Funcionario;
 
 public class FuncionarioDAO extends HibernateHelper<Funcionario> implements IDAO<Funcionario>{
 
+	private int id_created;
+	
+	public int getId_created() {
+		return this.id_created;
+	}
+	
 	public void save(Funcionario obj) throws Exception {
-		obj.setId(RandomHelper.getIntRandom());
+		this.id_created = RandomHelper.getIntRandom();
+		obj.setId(this.id_created);
 		executar(obj);
-		
-		// TODO Auto-generated method stub
-		
 	}
 
 	public ArrayList<Funcionario> getAll() throws Exception {

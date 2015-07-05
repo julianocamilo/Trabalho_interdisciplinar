@@ -101,10 +101,10 @@ public class HibernateHelper<T>{
 	}
 	
 	
-	protected T selecionar(T obj) throws Exception{
+	protected T selecionar(T obj, int id) throws Exception{
 		
 		EntityManager em =  this.getFactory();
-		T obj_encontrado = (T) em.find(obj.getClass() , obj);
+		T obj_encontrado = (T) em.find(obj.getClass() , 1258306141);
 		return obj_encontrado;
 	}
 	

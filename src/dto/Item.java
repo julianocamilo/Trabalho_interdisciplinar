@@ -1,13 +1,19 @@
 package dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity
@@ -32,8 +38,30 @@ public class Item implements Serializable{
 	private double valor;
 	
 	
+	@OneToMany(mappedBy = "pk.item", cascade = CascadeType.ALL)
+	private Set<ItemVenda> itemvendas = new HashSet<ItemVenda>();
 	
 	
+	@Transient
+	private int quantidadeSolicitada;
+	
+	
+	
+	public int getQuantidadeSolicitada() {
+		return quantidadeSolicitada;
+	}
+	public void setQuantidadeSolicitada(int quantidadeSolicitada) {
+		this.quantidadeSolicitada = quantidadeSolicitada;
+	}
+	public Set<ItemVenda> getItemvendas() {
+		return itemvendas;
+	}
+	public void setItemvendas(Set<ItemVenda> itemvendas) {
+		this.itemvendas = itemvendas;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	public Item(){}
 	public Item(int id){
 		this.id = id;

@@ -1,10 +1,14 @@
 package dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -25,7 +29,14 @@ public class TipoFiliacao implements Serializable {
 	@Column(name="Descricao")
 	private String descricao;
 	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipo")
+	private Set<Filiacao> filiacoes = new HashSet<Filiacao>();
+	
 	public TipoFiliacao(){}
+	public TipoFiliacao(int id){
+		this.id = id;
+	}
+	
 	public TipoFiliacao(String descricao){
 		this.descricao = descricao;
 	}

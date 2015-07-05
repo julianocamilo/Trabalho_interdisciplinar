@@ -4,13 +4,13 @@ import helper.RandomHelper;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.Fetch;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -37,15 +37,7 @@ public class Pessoa implements Serializable {
 	protected String nomeSocial;
 
 	
-	/*@OneToMany(fetch=FetchType.LAZY, mappedBy="pessoas")
-	@Transient
-	HashSet<Telefone> telefones = new HashSet<Telefone>();
-	
-	//@OneToMany(mappedBy="pessoas")
-	public HashSet<Telefone> getTelefones(){
-		return this.telefones;
-	}
-	*/
+
 	
 	
 	
@@ -69,6 +61,13 @@ public class Pessoa implements Serializable {
 			inverseJoinColumns = { @JoinColumn(name = "Id_deficencia") })
 	private Set<Deficiencia> defis = new HashSet<Deficiencia>() ;
 	
+	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="pessoa")
+	private Set<Filiacao> filiacoes = new HashSet<Filiacao>();
+	
+	@OneToMany(mappedBy = "horarioPessoaPk.pessoa", cascade = CascadeType.ALL)
+	private Set<HorarioPessoa> horarios = new HashSet<HorarioPessoa>();
+	
 	/*
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "defic_pessoas", catalog = "interdisciplinar", joinColumns = { @JoinColumn(name = "Id_pessoa", nullable = true, updatable = true) }, 
@@ -83,8 +82,12 @@ public class Pessoa implements Serializable {
 	
 	
 	
+	
+
 	public Pessoa(){}
 	
+	
+
 	public Pessoa(int id){
 		this.id =id;
 	}
@@ -99,11 +102,10 @@ public class Pessoa implements Serializable {
 		this.sexo		= new Sexo(sexo_id);
 		this.religiao	= new Religiao(religiao_id);
 		
-		if(deficiencias == null) return;
-		
-		for (Integer deficiencia_id : deficiencias) {
-			this.defis.add(new Deficiencia(deficiencia_id));
-		}
+		if(deficiencias != null)
+			for (Integer deficiencia_id : deficiencias) {
+				this.defis.add(new Deficiencia(deficiencia_id));
+			}
 	}
 	
 	public Etnia getEtnia() {

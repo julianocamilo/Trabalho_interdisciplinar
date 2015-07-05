@@ -3,13 +3,17 @@ package dto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -26,21 +30,34 @@ public class Venda implements Serializable {
 	@Column(name="Id_venda")
 	private int id;
 	
-	//Many to One Pessoa
-	//private int pesosa_id;
+	
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="Id_pessoa", referencedColumnName="Id_pessoa")
 	private Pessoa pessoa;
 	
+	@OneToMany(mappedBy = "pk.venda", cascade = CascadeType.ALL)
+	private Set<ItemVenda> itemvendas = new HashSet<ItemVenda>();
 	
-	/*public Pessoa getPessoa() {
+	public Pessoa getPessoa() {
 		return pessoa;
 	}
+
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
-	}*/
-	
+	}
+
+	public Set<ItemVenda> getItemvendas() {
+		return itemvendas;
+	}
+
+	public void setItemvendas(Set<ItemVenda> itemvendas) {
+		this.itemvendas = itemvendas;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	@Column(name="Data")
 	private Date data;
 	
@@ -50,14 +67,14 @@ public class Venda implements Serializable {
 	
 	public Venda(){}
 	
-	public Venda(Date data, double valor_total, int pessoa_id, ArrayList<Integer> items_id){
+	public Venda(int id){
+		this.id = id;
+	}
+	
+	public Venda(Date data, double valor_total, int pessoa_id){
 		this.data = data;
 		this.valor_total = valor_total;
-		
-		
 		pessoa = new Pessoa(pessoa_id);
-		
-		
 	}
 	
 	public int getId() {

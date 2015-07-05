@@ -19,6 +19,9 @@ public class GerenciadorDeficiencia {
 		return deficienciaDao.getAll();
 	}
 
-	
+	public static Deficiencia selecionar(int deficiencia_id) throws Exception{
+		return deficienciaDao.get(new Deficiencia(deficiencia_id));
+		
+	}
 	
 }
