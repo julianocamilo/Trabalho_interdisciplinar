@@ -101,6 +101,32 @@ public class HibernateHelper<T>{
 	}
 	
 	
+	protected Collection<T> selecionar(String query_string, HashMap<String, Object> args) throws Exception{
+		
+		
+		EntityManager em =  this.getFactory();
+		Query query = em.createQuery(query_string);
+	    
+	    
+		for(Entry<String, Object> entry : args.entrySet()) {
+		    String key = entry.getKey();
+		    Object value = entry.getValue();
+		    
+		    query = query.setParameter(key, value);
+		}		
+		
+		
+		query.setMaxResults(1);
+		List<T> res = query.getResultList();
+		em.close();
+		closeFactory();
+		return res;
+		
+		
+	}
+	
+	
+	
 	protected T selecionar(T obj, int id) throws Exception{
 		
 		EntityManager em =  this.getFactory();

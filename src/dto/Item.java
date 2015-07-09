@@ -37,15 +37,11 @@ public class Item implements Serializable{
 	@Column(name="Valor")	
 	private double valor;
 	
-	
-	@OneToMany(mappedBy = "pk.item", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "pk.item", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private Set<ItemVenda> itemvendas = new HashSet<ItemVenda>();
-	
 	
 	@Transient
 	private int quantidadeSolicitada;
-	
-	
 	
 	public int getQuantidadeSolicitada() {
 		return quantidadeSolicitada;
@@ -62,6 +58,7 @@ public class Item implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
 	public Item(){}
 	public Item(int id){
 		this.id = id;
