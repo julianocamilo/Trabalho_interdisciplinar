@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import dto.Horario;
+import dto.Venda;
 
 
 public class HorarioDAO extends HibernateHelper<Horario> implements IDAO<Horario> {
@@ -23,11 +24,19 @@ public class HorarioDAO extends HibernateHelper<Horario> implements IDAO<Horario
 		
 	}
 
+	
+	
 	public Horario get(Horario obj) throws Exception {
-		return null;
+		HashMap<String, Object> args = new HashMap<String, Object>();
+		String query_string = "SELECT i from Horario i"; // join fetch i.itemvendas WHERE i.id = :paramId";
+		//args.put("paramId", obj.getId());
+		
+		ArrayList<Horario> horarios = (ArrayList<Horario>) selecionar(query_string, args);
+		
+		if (horarios.isEmpty()) return null;
+		
+		return horarios.get(0);
 	}
-	
-	
 	
 	
 	

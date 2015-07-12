@@ -43,7 +43,7 @@ public class Turma implements Serializable{
 	private Curso curso;
 	
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "matricula", joinColumns = { @JoinColumn(name = "Id_turma") }, 
 			inverseJoinColumns = { @JoinColumn(name = "Id_pessoa") })
 	private Set<Aluno> alunos = new HashSet<Aluno>();
@@ -77,7 +77,13 @@ public class Turma implements Serializable{
 	
 		
 	public Turma(){}
-	public Turma(int capacidade, Date data_inicio, Date data_fim, String tema, int curso_id, Set<Integer> alunos_id, Set<Integer> horarios_id, Set<Integer> produtos_id){
+	
+	public Turma(int id){
+		this.id = id;
+		
+	}
+	
+	public Turma(int capacidade, Date data_inicio, Date data_fim, String tema, int curso_id, Set<Integer> horarios_id, Set<Integer> produtos_id){
 		
 		this.capacidade = capacidade;
 		this.data_inicio = data_inicio;
@@ -85,10 +91,7 @@ public class Turma implements Serializable{
 		this.tema = tema;
 		this.curso = new Curso(curso_id);
 		
-		if(alunos_id != null)
-			for (Integer aluno_id : alunos_id) {
-				this.alunos.add(new Aluno(aluno_id));
-			}
+		
 		
 		if(horarios_id != null)
 			for (Integer horario_id : horarios_id) {

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import dto.Turma;
+import dto.Venda;
 
 
 public class TurmaDAO extends HibernateHelper<Turma> implements IDAO<Turma> {
@@ -24,7 +25,11 @@ public class TurmaDAO extends HibernateHelper<Turma> implements IDAO<Turma> {
 	}
 
 	public Turma get(Turma obj) throws Exception {
-		return null;
+		HashMap<String, Object> args = new HashMap<String, Object>();
+		String query_string = "SELECT i from Turma i fetch all properties "; // join fetch i.itemvendas WHERE i.id = :paramId";
+		ArrayList<Turma> turmas = (ArrayList<Turma>) selecionar(query_string, args);
+		if (turmas.isEmpty()) return null;
+		return turmas.get(0);
 	}
 	
 	public void update(Turma obj) throws Exception{

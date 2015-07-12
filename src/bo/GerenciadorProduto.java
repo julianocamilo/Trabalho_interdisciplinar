@@ -4,8 +4,10 @@ package bo;
 import java.util.ArrayList;
 
 
+
 import model.ProdutoDAO;
 import model.IDAO;
+import dto.Item;
 import dto.Produto;
 
 
@@ -88,7 +90,9 @@ public class GerenciadorProduto {
 	} 
 	
 	
-	
+	public static Produto selecionar(int item_id)throws Exception{
+		return produtoDao.get(new Produto(item_id));
+	}
 	
 	
 	

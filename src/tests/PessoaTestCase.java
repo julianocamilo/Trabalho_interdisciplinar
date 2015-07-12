@@ -22,6 +22,12 @@ public class PessoaTestCase {
 	public void saveFuncionarioSuccess() {
 		try {
 			
+			ArrayList<String> numeros = new ArrayList<String>();
+			
+			numeros.add("666666454");
+			numeros.add("6787878454");
+			numeros.add("77778454");
+			
 			ArrayList<Integer> deficiencias = new ArrayList<Integer>();
 			deficiencias.add(8371116);
 			deficiencias.add(8371117);
@@ -50,7 +56,7 @@ public class PessoaTestCase {
 			horarios.add(horario2);
 			
 			GerenciadorPessoa.salvarFuncionario(123456, "seila", new Date(), "Rua legal", "Funcionario1",
-					"quebragalho", 1420560671, 683618013, 1746794390, deficiencias, fil, horarios);
+					"quebragalho", 1420560671, 683618013, 1746794390, deficiencias, fil, horarios, numeros);
 		} 
 		catch (Exception e) {
 			fail("ERRO SALVAR FUNCIONARIO: " + e.getMessage());
@@ -60,7 +66,7 @@ public class PessoaTestCase {
 	@Test(expected=Exception.class)
 	public void saveFuncionarioFail() throws Exception{
 		GerenciadorPessoa.salvarFuncionario(123456, "Jogador", new Date(), "Rua legal", "",
-				"", 1420560671, 683618013, 1746794390, null, null, null);
+				"", 1420560671, 683618013, 1746794390, null, null, null, null);
 	}
 	
 	
@@ -73,7 +79,7 @@ public class PessoaTestCase {
 			fil.put(960292675, "testealuno");
 			
 			GerenciadorPessoa.salvarAluno(123456, "Junho", "ruazinha", "Aluno1", "Aluno1", 1420560671,
-					683618013, 1746794390, null, fil, null);
+					683618013, 1746794390, null, fil, null, null);
 		} 
 		catch (Exception e) {
 			fail("ERRO SALVAR ALUNO: " + e.getMessage());
@@ -85,7 +91,7 @@ public class PessoaTestCase {
 		
 		
 		GerenciadorPessoa.salvarAluno(123456, "cartão", "", "", "", 1420560671,
-				683618013, 1746794390, null, null, null);
+				683618013, 1746794390, null, null, null, null);
 	}
 	
 	
@@ -98,7 +104,7 @@ public class PessoaTestCase {
 			fil.put(171755205, "testeprof");
 			
 			GerenciadorPessoa.salvarProfessor(254847455, "Professor1", "Eff", "Professor1", "Professor1", 1420560671,
-					683618013, 1746794390, null, fil, null);
+					683618013, 1746794390, null, fil, null, null);
 		} 
 		catch (Exception e) {
 			fail("ERRO SALVAR PROFESSOR: " + e.getMessage());
@@ -111,7 +117,7 @@ public class PessoaTestCase {
 	@Test(expected=Exception.class)
 	public void saveProfessorFail() throws Exception{
 		GerenciadorPessoa.salvarProfessor(123456, "", "", "", "", 1420560671,
-				683618013, 1746794390, null, null, null);
+				683618013, 1746794390, null, null, null, null);
 	}
 	
 	

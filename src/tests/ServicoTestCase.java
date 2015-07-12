@@ -47,6 +47,10 @@ public class ServicoTestCase {
 		}
 	}
 	
+	@Test
+	public void getOneEstoqueSuccess() throws Exception {
+		GerenciadorServico.selecionar(642204348);
+	}
 	
 	
 }

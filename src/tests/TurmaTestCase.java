@@ -18,8 +18,7 @@ public class TurmaTestCase {
 	public void saveTurmaSuccess() {
 		try {
 			
-			Set<Integer> alunos = new HashSet<Integer>();
-			alunos.add(213552162);
+			
 			
 			Set<Integer> horarios = new HashSet<Integer>();
 			horarios.add(1730704439);
@@ -30,7 +29,7 @@ public class TurmaTestCase {
 			produtos.add(668);
 			
 			
-			bo.GerenciadorTurma.salvar(50, new Date(), new Date(), "Excel avançado", 1661903814, alunos, horarios, produtos);
+			bo.GerenciadorTurma.salvar(50, new Date(), new Date(), "Excel avançado", 1661903814, horarios, produtos);
 		} 
 		catch (Exception e) {
 			fail("ERRO SALVAR Turma: " + e.getMessage());
@@ -39,7 +38,7 @@ public class TurmaTestCase {
 	
 	@Test(expected=Exception.class)
 	public void saveTurmaFail() throws Exception{
-		GerenciadorTurma.salvar(0, new Date(), new Date(), "Excel avançado", 1661903814, null, null, null);
+		GerenciadorTurma.salvar(0, new Date(), new Date(), "Excel avançado", 1661903814, null, null);
 	}
 	
 	@Test(expected=Exception.class)
@@ -48,13 +47,13 @@ public class TurmaTestCase {
 		alunos.add(213552162);
 		alunos.add(231676079);
 		
-		bo.GerenciadorTurma.salvar(1, new Date(), new Date(), "Excel avançado", 1661903814, alunos, null, null);
+		bo.GerenciadorTurma.salvar(1, new Date(), new Date(), "Excel avançado", 1661903814, null, null);
 	}
 	
 	
 	@Test(expected=Exception.class)
 	public void saveTurmaNegativeFail() throws Exception{
-		GerenciadorTurma.salvar(-9, new Date(), new Date(), "Excel avançado", 1661903814, null, null, null);
+		GerenciadorTurma.salvar(-9, new Date(), new Date(), "Excel avançado", 1661903814, null, null);
 	}
 	
 	
@@ -85,6 +84,24 @@ public class TurmaTestCase {
 			fail("ERRO SALVAR Turma: " + e.getMessage());
 		}
 	}
+	
+
+	
+	@Test
+	public void updateAdicionarAlunoSuccess() {
+		try {
+			
+			
+			bo.GerenciadorTurma.adicionarAluno(2007643425, 1064946275);
+		} 
+		catch (Exception e) {
+			fail("ERRO ATUALIZAR Turma: " + e.getMessage());
+		}
+	}
+	
+	
+	
+	
 	
 	
 }

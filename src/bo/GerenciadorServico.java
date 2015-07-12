@@ -4,9 +4,11 @@ package bo;
 import java.util.ArrayList;
 
 
+
 import model.ServicoDAO;
 import model.IDAO;
 import dto.Servico;
+import dto.Venda;
 
 
 
@@ -32,6 +34,9 @@ public class GerenciadorServico {
 	} 
 	
 	
+	public static Servico selecionar(int item_id)throws Exception{
+		return servicoDao.get(new Servico(item_id));
+	}
 	
 	
 	

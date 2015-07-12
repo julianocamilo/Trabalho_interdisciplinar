@@ -33,6 +33,11 @@ public class HorarioTestCase {
 		GerenciadorHorario.listar();
 	}
 	
+	@Test
+	public void GetOneHorarioSuccess() throws Exception {
+		GerenciadorHorario.selecionar(1524540745);
+	}
+	
 	
 	
 	

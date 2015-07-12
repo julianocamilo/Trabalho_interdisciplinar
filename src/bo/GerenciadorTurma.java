@@ -16,11 +16,11 @@ public class GerenciadorTurma{
 	private static IDAO<Turma> TurmaDao = new TurmaDAO();
 	
 	
-	public static void salvar(int capacidade, Date data_inicio, Date data_fim, String tema, int curso_id, Set<Integer> alunos_id, Set<Integer> horarios_id, Set<Integer> produtos_id) throws Exception{
+	public static void salvar(int capacidade, Date data_inicio, Date data_fim, String tema, int curso_id, Set<Integer> horarios_id, Set<Integer> produtos_id) throws Exception{
 		
 		if(capacidade <= 0) throw new Exception("A capacidade deve ser maior que zero.");
-		if(alunos_id.size() > capacidade) throw new Exception("Limite de alunos ultrapassado");
-		TurmaDao.save(new Turma(capacidade, data_inicio, data_fim, tema, curso_id, alunos_id,horarios_id, produtos_id ));
+		
+		TurmaDao.save(new Turma(capacidade, data_inicio, data_fim, tema, curso_id,horarios_id, produtos_id ));
 	}
 	
 	public static ArrayList<Turma> listar() throws Exception{
@@ -55,5 +55,23 @@ public class GerenciadorTurma{
 		turmaDao2.update(turma);
 		
 	}
+	
+	
+	public static void adicionarAluno(int turma_id, int aluno_id) throws Exception{
+		
+		Turma turma = TurmaDao.get(new Turma(turma_id));
+		
+		int quantidade_disponivel = turma.getCapacidade() - turma.getAlunos().size();
+		if(quantidade_disponivel <= 0) throw new Exception("Não há vagas nesta turma, tente outra turma");
+		
+		
+		turma.getAlunos().add(new Aluno(aluno_id));
+		TurmaDAO turmaDao2 = (TurmaDAO)TurmaDao;
+		turmaDao2.update(turma);
+		
+		
+		
+	}
+	
 	
 }

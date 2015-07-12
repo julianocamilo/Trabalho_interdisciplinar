@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import dto.Produto;
+import dto.Venda;
 
 
 public class ProdutoDAO extends HibernateHelper<Produto> implements IDAO<Produto> {
@@ -41,7 +42,11 @@ public class ProdutoDAO extends HibernateHelper<Produto> implements IDAO<Produto
 	
 	
 	public Produto get(Produto obj) throws Exception {
-		return null;
+		HashMap<String, Object> args = new HashMap<String, Object>();
+		String query_string = "SELECT i from Produto i";
+		ArrayList<Produto> produtos = (ArrayList<Produto>) selecionar(query_string, args);
+		if (produtos.isEmpty()) return null;
+		return produtos.get(0);
 	}
 	
 	

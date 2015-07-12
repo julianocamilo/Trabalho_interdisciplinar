@@ -20,6 +20,10 @@ public class Servico extends Item implements Serializable {
 	
 	public Servico(){}
 	
+	public Servico(int id){
+		super(id);
+	}
+	
 	public Servico(String descricao, double valor, String especificacao, int duracao){
 		super(descricao,valor);
 		this.especificacao = especificacao;

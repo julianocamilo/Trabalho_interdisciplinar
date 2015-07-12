@@ -3,6 +3,7 @@ package bo;
 import java.util.ArrayList;
 
 import dto.Horario;
+import dto.Item;
 import model.IDAO;
 import model.HorarioDAO;
 
@@ -18,6 +19,11 @@ public class GerenciadorHorario{
 	
 	public static ArrayList<Horario> listar() throws Exception{
 		return HorarioDao.getAll();
+	}
+	
+	
+	public static Horario selecionar(int horario_id)throws Exception{
+		return HorarioDao.get(new Horario(horario_id));
 	}
 	
 	

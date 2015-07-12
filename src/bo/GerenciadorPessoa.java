@@ -1,7 +1,5 @@
 package bo;
 
-
-
 import helper.RandomHelper;
 
 import java.util.ArrayList;
@@ -20,6 +18,7 @@ import model.FuncionarioDAO;
 import model.HorarioPessoaDAO;
 import model.IDAO;
 import model.ProfessorDAO;
+import model.TelefoneDAO;
 import dto.Aluno;
 import dto.Filiacao;
 import dto.Funcionario;
@@ -27,6 +26,7 @@ import dto.Horario;
 import dto.HorarioPessoa;
 import dto.Pessoa;
 import dto.Professor;
+import dto.Telefone;
 import dto.TipoFiliacao;
 
 public class GerenciadorPessoa {
@@ -37,6 +37,7 @@ public class GerenciadorPessoa {
 	private static IDAO<Funcionario> funcDao = new FuncionarioDAO();
 	private static IDAO<Filiacao> filiacaoDao = new FiliacaoDAO();
 	private static IDAO<HorarioPessoa> horarioPessoaDao = new HorarioPessoaDAO();
+	private static IDAO<Telefone> telefoneDao = new TelefoneDAO();
 	
 	
 	
@@ -79,8 +80,22 @@ public class GerenciadorPessoa {
 		
 	}
 	
+	private static void salvarTelefones(ArrayList<String> telefones, int pessoa_id) throws Exception{
+		
+		for (String phonenumber : telefones) {
+			
+			Telefone telefone = new Telefone();
+			telefone.setTelefone(phonenumber);
+			telefone.setId(RandomHelper.getIntRandom());
+			telefone.setPessoa(new Pessoa(pessoa_id));
+			telefoneDao.save(telefone);
+		}
+		
+		
+	}
 	
-	public static void salvarProfessor(int cep, String formacao,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id, HashMap<Integer, String> filiacoes, ArrayList<Horario> horarios) throws Exception{
+	
+	public static void salvarProfessor(int cep, String formacao,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id, HashMap<Integer, String> filiacoes, ArrayList<Horario> horarios, ArrayList<String> telefones) throws Exception{
 		validPessoa(nome);
 		Professor professorDto = new Professor(nome,nomeSocial, cep, logradouro,formacao, etnia_id, sexo_id, religiao_id, deficiencias_id);
 		professorDao.save(professorDto);
@@ -88,12 +103,13 @@ public class GerenciadorPessoa {
 		ProfessorDAO pdao = (ProfessorDAO)professorDao;
 		
 		if(filiacoes != null) salvarFiliacoes(filiacoes, pdao.getId_created());
-		if(horarios != null) salvarHorarios(horarios, pdao.getId_created());
+		if(horarios != null)  salvarHorarios(horarios, pdao.getId_created());
+		if(telefones != null) salvarTelefones(telefones, pdao.getId_created());
 			
 	}
 	
 	
-	public static void salvarAluno(int cep, String fpagamento,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id, HashMap<Integer, String> filiacoes, ArrayList<Horario> horarios) throws Exception{
+	public static void salvarAluno(int cep, String fpagamento,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id, HashMap<Integer, String> filiacoes, ArrayList<Horario> horarios, ArrayList<String> telefones) throws Exception{
 		validPessoa(nome);
 		Aluno alunoDto = new Aluno(nome, nomeSocial, cep, logradouro, fpagamento, etnia_id, sexo_id, religiao_id, deficiencias_id);
 		alunoDao.save(alunoDto);
@@ -102,11 +118,12 @@ public class GerenciadorPessoa {
 		
 		if(filiacoes != null) salvarFiliacoes(filiacoes, pdao.getId_created());
 		if(horarios != null) salvarHorarios(horarios, pdao.getId_created());
+		if(telefones != null) salvarTelefones(telefones, pdao.getId_created());
 		
 	}
 	
 	
-	public static void salvarFuncionario(int cep, String cargo, Date data_admissao,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id, HashMap<Integer, String> filiacoes, ArrayList<Horario> horarios) throws Exception{
+	public static void salvarFuncionario(int cep, String cargo, Date data_admissao,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id, HashMap<Integer, String> filiacoes, ArrayList<Horario> horarios, ArrayList<String> telefones) throws Exception{
 		validPessoa(nome);
 		Funcionario funcionarioDto = new Funcionario(nome, nomeSocial, cep, logradouro, data_admissao, cargo, etnia_id, sexo_id, religiao_id, deficiencias_id);
 		funcDao.save(funcionarioDto);
@@ -115,6 +132,7 @@ public class GerenciadorPessoa {
 		
 		if(filiacoes != null) salvarFiliacoes(filiacoes, pdao.getId_created());
 		if(horarios != null) salvarHorarios(horarios, pdao.getId_created());
+		if(telefones != null) salvarTelefones(telefones, pdao.getId_created());
 		
 	}
 	

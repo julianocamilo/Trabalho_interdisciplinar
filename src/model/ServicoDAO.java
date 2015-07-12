@@ -9,6 +9,7 @@ import helper.RandomHelper;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import dto.Produto;
 import dto.Servico;
 
 
@@ -33,7 +34,11 @@ public class ServicoDAO extends HibernateHelper<Servico> implements IDAO<Servico
 	
 	
 	public Servico get(Servico obj) throws Exception {
-		return null;
+		HashMap<String, Object> args = new HashMap<String, Object>();
+		String query_string = "SELECT i from Servico i";
+		ArrayList<Servico> servicos = (ArrayList<Servico>) selecionar(query_string, args);
+		if (servicos.isEmpty()) return null;
+		return servicos.get(0);
 	}
 	
 	
