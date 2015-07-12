@@ -253,7 +253,6 @@ public class PessoaController extends ApplicationController {
 		if (this.id_deficiencia.isEmpty())
 			return;
 		
-		
 		Deficiencia deficiencia = GerenciadorDeficiencia.selecionar(Integer.parseInt(id_deficiencia));
 		Deficiencias deficiencias = new Deficiencias();
 		deficiencias.id = id_deficiencia;

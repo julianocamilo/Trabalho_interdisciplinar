@@ -42,9 +42,7 @@ public class TurmaController extends ApplicationController {
 	private String produtoId;
 	private List<Produto> produtoList =  new ArrayList<Produto>();
 	private String messageError;
-	
 	private List<Turma> turmaList =  carregaTurmas();
-	
 	
 	public void save() throws Exception{ 
 		this.messageError = "";
@@ -56,13 +54,10 @@ public class TurmaController extends ApplicationController {
 			int capacidade_int = Integer.parseInt(capacidade);
 			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
 			Date date_inicio = (Date)formatter.parse(this.data_ini);
-			Date date_fim = (Date)formatter.parse(this.data_fim);
-			
+			Date date_fim = (Date)formatter.parse(this.data_fim);			
 			GerenciadorTurma.salvar(capacidade_int, date_inicio, date_fim, this.tema, Integer.parseInt(curso_id), returnHorarioId(), returnProdutoId());
-			super.setMessage("msgError", "Sucesso!");
-			
-			
-			
+			super.setMessage("msgError", "Sucesso!");			
+						
 		}catch(Exception ex) {						
 			super.setMessage("msgError", ex.getMessage());
 		}	
@@ -85,8 +80,6 @@ public class TurmaController extends ApplicationController {
 	// Curso
 	private static Map<String,Object> hashCurso() throws Exception {
 		ArrayList<Curso> cursoArray = GerenciadorCurso.listar();
-		
-		
 		Map<String,Object> hashCurso = new LinkedHashMap<String,Object>();
 		for (int i=0; i< cursoArray.size(); i++) {			
 			hashCurso.put(cursoArray.get(i).getDescricao(), cursoArray.get(i).getId()); //label, value			
@@ -120,7 +113,7 @@ public class TurmaController extends ApplicationController {
 	
 	public List<Turma> carregaTurmas(){		
 		try {
-			return GerenciadorTurma.getTurmasWS();
+		//	return GerenciadorTurma.getTurmasWS();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
