@@ -1,8 +1,11 @@
 package model;
 
 import helper.HibernateHelper;
+import helper.RandomHelper;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+
 
 
 import dto.Usuario;
@@ -10,8 +13,7 @@ import dto.Usuario;
 public class UsuarioDAO extends HibernateHelper<Usuario> implements IDAO<Usuario>{
 
 	public void save(Usuario usuario) throws Exception {
-		// TODO Auto-generated method stub
-		
+		executar(usuario);
 	}
 
 	public ArrayList<Usuario> getAll() throws Exception {

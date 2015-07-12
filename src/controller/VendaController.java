@@ -10,26 +10,31 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import dto.Item;
+import dto.Produto;
+import dto.Servico;
 
 import java.util.List;
 
 import bo.GerenciadorItem;
+import bo.GerenciadorProduto;
+import bo.GerenciadorServico;
 import bo.GerenciadorVenda;
 
 @ManagedBean
 @ViewScoped
 public class VendaController extends ApplicationController {
-	
+
 	public class Itens {
 		public String id;
 		public String nome;
 		public String tipo;
 		public String valor;
 		public String quantidade;
+
 		public String getId() {
 			return id;
 		}
-				
+
 		public String getQuantidade() {
 			return quantidade;
 		}
@@ -37,89 +42,99 @@ public class VendaController extends ApplicationController {
 		public String getNome() {
 			return nome;
 		}
-		
+
 		public String getTipo() {
 			return tipo;
 		}
 
 		public String getValor() {
 			return valor;
-		}		
-		
-	} 
-	
+		}
+
+	}
+
 	private String data;
 	private String valor = "0.00";
 	private String id_pessoa;
-	private List<Itens> itensList =  new ArrayList<Itens>();
+	private List<Itens> itensList = new ArrayList<Itens>();
 	private String id_item;
-	private String tipo; 
+	private String tipo;
 	private String quantidade_item;
 	private String messageError;
-	
-	public void save() throws Exception{
+
+	public void save() throws Exception {
 		this.messageError = "";
 		try {
-			String message = validate(); 
+			String message = validate();
 			if (!message.isEmpty()) {
 				throw new Exception(message);
-			}			
-			double valor = this.valor.isEmpty() ? 0.00 : Double.parseDouble(this.valor);
-			DateFormat formatter = new SimpleDateFormat("MM/dd/yy");  
-			Date date = (Date)formatter.parse(this.data);
-			int id_pessoa =Integer.parseInt(this.id_pessoa);
+			}
+			double valor = this.valor.isEmpty() ? 0.00 : Double
+					.parseDouble(this.valor);
+			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = (Date) formatter.parse(this.data);
+			int id_pessoa = Integer.parseInt(this.id_pessoa);
 			GerenciadorVenda.salvar(date, valor, id_pessoa, retornaItens());
-		}catch(Exception ex) {						
+			super.setMessage("msgError", "Cadastrado com sucesso");
+		} catch (Exception ex) {
 			super.setMessage("msgError", ex.getMessage());
-		}	
-	}	
+		}
+	}
 
-	public void addItem(){
-		//if (this.id_item.isEmpty()) return;
-		//HashMap<Object, Object> item = GerenciadorItem.retornaItem(id_item);		//
-		// Usei pra teste
-		HashMap<Object, Object> itemHash = new HashMap<Object, Object>();		
-		itemHash.put("id", "1");
-		itemHash.put("nome", "test");
-		itemHash.put("valor", "2.50");		
-		
-		if (quantidade_item.trim().isEmpty())
-			quantidade_item = "1";
-			
-		Itens item = new Itens();
-		item.id = itemHash.get("id").toString();
-		item.nome = itemHash.get("nome").toString();
-		item.tipo = Integer.parseInt(this.tipo) == 0 ? "Produto" : "Serviço";
-		item.quantidade = quantidade_item;
-		double valorTotalItem = Integer.parseInt(quantidade_item) * Double.parseDouble(itemHash.get("valor").toString()); 
-		item.valor = String.valueOf(valorTotalItem);
-		itensList.add(item);
-		double valorTotal = 0;
-		for(int a = 0; a < itensList.size() ; a++ )
-			valorTotal += Double.parseDouble(itensList.get(a).valor);		
-		this.valor = String.valueOf(valorTotal);
-		this.id_item = "";				
-	} 	
-	
 	private ArrayList<Item> retornaItens() {
 		ArrayList<Item> array = new ArrayList<Item>();
-		for(int a = 0; a < itensList.size() ; a++ )
-		{
+		for (int a = 0; a < itensList.size(); a++) {
 			Item item = new Item();
+			item.setId(Integer.parseInt(itensList.get(0).id));
 			item.setValor(Double.parseDouble(itensList.get(a).valor));
 			item.setQuantidadeSolicitada(Integer.parseInt(itensList.get(a).quantidade));
 			array.add(item);
 		}
 		return array;
 	}
-	
+
+	public void addItem() throws NumberFormatException, Exception {
+		if (this.id_item.isEmpty())
+			return;
+		Itens item = new Itens();
+		double valor_produto = 0.00;
+		if (Integer.parseInt(this.tipo) == 0) {
+			Produto item_venda = GerenciadorProduto.selecionar(Integer
+					.parseInt(id_item));
+			item.id = String.valueOf(item_venda.getId());
+			item.nome = item_venda.getDescricao();
+			valor_produto = item_venda.getValor();
+		} else {
+			Servico item_venda = GerenciadorServico.selecionar(Integer
+					.parseInt(id_item));
+			item.id = String.valueOf(item_venda.getId());
+			item.nome = item_venda.getDescricao();
+			valor_produto = item_venda.getValor();
+		}
+
+		if (quantidade_item.trim().isEmpty())
+			quantidade_item = "1";
+
+		item.tipo = Integer.parseInt(this.tipo) == 0 ? "Produto" : "Serviço";
+		item.quantidade = quantidade_item;
+		double valorTotalItem = Integer.parseInt(quantidade_item)
+				* valor_produto;
+		item.valor = String.valueOf(valorTotalItem);
+		itensList.add(item);
+
+		double valorTotal = 0;
+		for (int a = 0; a < itensList.size(); a++)
+			valorTotal += Double.parseDouble(itensList.get(a).valor);
+		this.valor = String.valueOf(valorTotal);
+		this.id_item = "";
+	}
+
 	private String validate() {
-		String message = "";		
+		String message = "";
 		if (id_pessoa.trim().isEmpty())
 			message = "Campo id pessoa é obrigatório";
-		else
-			if (itensList.size() == 0)
-				message = "É obrigatório ter um produto na venda";
+		else if (itensList.size() == 0)
+			message = "É obrigatório ter um produto na venda";
 		return message;
 	}
 
@@ -186,5 +201,5 @@ public class VendaController extends ApplicationController {
 	public void setQuantidade_item(String quantidade_item) {
 		this.quantidade_item = quantidade_item;
 	}
-	
+
 }

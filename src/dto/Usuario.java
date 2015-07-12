@@ -38,7 +38,7 @@ public class Usuario implements Serializable {
 	
 	@Id
 	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name="property", value="pessoas"))
-	@GeneratedValue(generator = "generator")
+	//@GeneratedValue(generator = "generator")
 	@Column(name = "Id_pessoa")
 	private int pessoa_id;
 	
@@ -50,6 +50,8 @@ public class Usuario implements Serializable {
 	public Usuario(String login, String senha, int id_pessoa){
 		this.login = login;
 		this.senha = senha;
+		this.pessoa_id = id_pessoa;
+		this.pessoa = new Pessoa(id_pessoa);
 	}
 	
 	public Usuario(){}

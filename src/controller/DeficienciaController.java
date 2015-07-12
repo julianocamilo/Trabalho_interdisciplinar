@@ -20,6 +20,9 @@ public class DeficienciaController extends ApplicationController {
 			}
 			int grau = Integer.parseInt(this.grau);
 			GerenciadorDeficiencia.salvar(this.descricao, grau);
+			
+			super.setMessage("msgError", "Cadastrado com sucesso");
+			
 		}catch(Exception ex) {						
 			super.setMessage("msgError", ex.getMessage());
 		}	

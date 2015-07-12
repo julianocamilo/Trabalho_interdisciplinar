@@ -43,7 +43,8 @@ public class ProdutoDAO extends HibernateHelper<Produto> implements IDAO<Produto
 	
 	public Produto get(Produto obj) throws Exception {
 		HashMap<String, Object> args = new HashMap<String, Object>();
-		String query_string = "SELECT i from Produto i";
+		String query_string = "SELECT i from Produto i WHERE i.id = :paramId";
+		args.put("paramId", obj.getId());
 		ArrayList<Produto> produtos = (ArrayList<Produto>) selecionar(query_string, args);
 		if (produtos.isEmpty()) return null;
 		return produtos.get(0);

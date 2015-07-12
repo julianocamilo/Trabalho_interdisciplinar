@@ -25,7 +25,7 @@ public class GerenciadorUsuario {
 		if(login.isEmpty()) throw new Exception("Descrição é campo obrigatório");
 		if(senha.isEmpty()) throw new Exception("Senha é campo obrigatório");
 		if((String.valueOf(id_pessoa)).isEmpty()) throw new Exception("id pessoa é campo obrigatório");
-		//UsuarioDAO.save(new Usuario(login, senha, id_pessoa));
+		usuarioDao.save(new Usuario(login, senha, id_pessoa));
 	}	
 	
 	

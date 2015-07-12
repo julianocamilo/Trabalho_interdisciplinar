@@ -19,6 +19,7 @@ public class CursoController extends ApplicationController {
 				throw new Exception(message);
 			}
 			GerenciadorCurso.salvar(this.descricao);
+			super.setMessage("msgError", "Cadastrado com sucesso");
 		}catch(Exception ex) {						
 			super.setMessage("msgError", ex.getMessage());
 		}	

@@ -5,7 +5,6 @@ import helper.RandomHelper;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-
 import java.util.Map.Entry;
 
 import javax.persistence.EntityManager;
@@ -109,6 +108,7 @@ public class GerenciadorPessoa {
 	}
 	
 	
+	
 	public static void salvarAluno(int cep, String fpagamento,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id, HashMap<Integer, String> filiacoes, ArrayList<Horario> horarios, ArrayList<String> telefones) throws Exception{
 		validPessoa(nome);
 		Aluno alunoDto = new Aluno(nome, nomeSocial, cep, logradouro, fpagamento, etnia_id, sexo_id, religiao_id, deficiencias_id);
@@ -121,6 +121,13 @@ public class GerenciadorPessoa {
 		if(telefones != null) salvarTelefones(telefones, pdao.getId_created());
 		
 	}
+	
+	
+	public static ArrayList<Aluno> listarAlunos() throws Exception{
+		return alunoDao.getAll();
+		
+	}
+	
 	
 	
 	public static void salvarFuncionario(int cep, String cargo, Date data_admissao,  String logradouro, String nome, String nomeSocial, int sexo_id, int etnia_id, int religiao_id, ArrayList<Integer> deficiencias_id, HashMap<Integer, String> filiacoes, ArrayList<Horario> horarios, ArrayList<String> telefones) throws Exception{

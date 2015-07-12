@@ -20,9 +20,12 @@ import dto.TipoFiliacao;
 
 import java.util.List;
 
+import bo.GerenciadorEtnia;
 import bo.GerenciadorHorario;
 import bo.GerenciadorItem;
 import bo.GerenciadorPessoa;
+import bo.GerenciadorReligiao;
+import bo.GerenciadorSexo;
 import bo.GerenciadorTipoFiliacao;
 import bo.GerenciadorVenda;
 
@@ -106,18 +109,29 @@ public class PessoaController extends ApplicationController {
 			
 			switch (tipo) {
 			case 0:
-//				GerenciadorPessoa.salvarAluno(cepInt, this.fpagamento, this.logrado, this.nome, this.nome_social, id_sexo_int, id_etnia_int, id_religiao_int, retornaIdItens(), retornaHashfiliacao(), horarioList, telefoneList);
+				GerenciadorPessoa.salvarAluno(cepInt, this.fpagamento, this.logrado, this.nome, this.nome_social, id_sexo_int, id_etnia_int, id_religiao_int, retornaIdItens(), retornaHashfiliacao(), (ArrayList<Horario>)horarioList, retornaTelefone());
+				
 				break;
 			case 1:	
-			//	GerenciadorPessoa.salvarFuncionario(cepInt, this.cargo, data_admissao, this.logrado, this.nome, this.nome_social, id_sexo_int, id_etnia_int, id_religiao_int, retornaIdItens(), retornaHashfiliacao(), horarioList, telefoneList);
+				GerenciadorPessoa.salvarFuncionario(cepInt, this.cargo, data_admissao, this.logrado, this.nome, this.nome_social, id_sexo_int, id_etnia_int, id_religiao_int, retornaIdItens(), retornaHashfiliacao(), (ArrayList<Horario>)horarioList, retornaTelefone());
 				break;
 			case 2:	
-				//GerenciadorPessoa.salvarProfessor(cepInt, this.formacao, this.logrado, this.nome, this.nome_social, id_sexo_int, id_etnia_int, id_religiao_int, retornaIdItens(), retornaHashfiliacao(), horarioList, telefoneList);			
-			}									
+				GerenciadorPessoa.salvarProfessor(cepInt, this.formacao, this.logrado, this.nome, this.nome_social, id_sexo_int, id_etnia_int, id_religiao_int, retornaIdItens(), retornaHashfiliacao(), (ArrayList<Horario>)horarioList, retornaTelefone());			
+			}			
+			super.setMessage("msgError", "Sucesso!");
+			
 		}catch(Exception ex) {						
 			super.setMessage("msgError", ex.getMessage());
 		}	
 	}		
+	
+	
+	private ArrayList<String> retornaTelefone() {
+	 	ArrayList<String> array = new ArrayList<String>();
+	 	for (int i=0; i < telefoneList.size(); i++ )
+	 	array.add(telefoneList.get(i).getTelefone());
+	 	return array;
+	 }
 	
 	private HashMap<Integer, String> retornaHashfiliacao() {
 		HashMap<Integer, String> hashFiliacao = new HashMap<Integer, String>();
@@ -128,17 +142,7 @@ public class PessoaController extends ApplicationController {
 	}
 	
 	private static Map<String,Object> hashTipoFiliacao() throws Exception {
-		//ArrayList<TipoFiliacao> tipo_filiacao = (new GerenciadorTipoFiliacao()).listar();
-		ArrayList<TipoFiliacao> tipo_filiacao = new ArrayList<TipoFiliacao>();
-		TipoFiliacao tipofiliacao = new TipoFiliacao();
-		tipofiliacao.setDescricao("Pai");
-		tipofiliacao.setId(1);
-		tipo_filiacao.add(tipofiliacao);
-		
-		TipoFiliacao tipofiliacao2 = new TipoFiliacao();
-		tipofiliacao2.setDescricao("Mãe");
-		tipofiliacao2.setId(2);
-		tipo_filiacao.add(tipofiliacao2);
+		ArrayList<TipoFiliacao> tipo_filiacao = GerenciadorTipoFiliacao.listar();
 		
 		Map<String,Object> hashFiliacao = new LinkedHashMap<String,Object>();
 		for (int i=0; i< tipo_filiacao.size(); i++) {			
@@ -153,17 +157,8 @@ public class PessoaController extends ApplicationController {
 	
 	// Sexo
 	private static Map<String,Object> hashSexo() throws Exception {
-		//ArrayList<Sexo> sexoArray = (new GerenciadorSexo()).listar();
-		ArrayList<Sexo> sexoArray = new ArrayList<Sexo>();
-		Sexo sexo = new Sexo();
-		sexo.setDescricao("Masculino");
-		sexo.setId(1);
-		sexoArray.add(sexo);
+		ArrayList<Sexo> sexoArray = GerenciadorSexo.listar();
 		
-		Sexo sexo2 = new Sexo();
-		sexo2.setDescricao("Feminino");
-		sexo2.setId(1);
-		sexoArray.add(sexo2);
 		
 		Map<String,Object> hashSexo = new LinkedHashMap<String,Object>();
 		for (int i=0; i< sexoArray.size(); i++) {			
@@ -179,17 +174,8 @@ public class PessoaController extends ApplicationController {
 	
 	// Religiao
 	private static Map<String,Object> hashReligiao() throws Exception {
-		//ArrayList<Religiao> religiaoArray = (new GerenciadorReligiao()).listar();
-		ArrayList<Religiao> religiaoArray = new ArrayList<Religiao>();
-		Religiao religiao = new Religiao();
-		religiao.setDescricao("Religiao 1");
-		religiao.setId(1);
-		religiaoArray.add(religiao);
+		ArrayList<Religiao> religiaoArray = GerenciadorReligiao.listar();
 		
-		Religiao religiao2 = new Religiao();
-		religiao2.setDescricao("Religiao 2");
-		religiao2.setId(1);
-		religiaoArray.add(religiao2);
 		
 		Map<String,Object> hashReligiao = new LinkedHashMap<String,Object>();
 		for (int i=0; i< religiaoArray.size(); i++) {			
@@ -205,17 +191,8 @@ public class PessoaController extends ApplicationController {
 		
 	// Etnia
 	private static Map<String,Object> hashEtnia() throws Exception {
-		//ArrayList<Etnia> etniaArray = (new GerenciadorEtnia()).listar();
-		ArrayList<Etnia> etniaArray = new ArrayList<Etnia>();
-		Etnia etnia = new Etnia();
-		etnia.setDescricao("Etnia 1");
-		etnia.setId(1);
-		etniaArray.add(etnia);
+		ArrayList<Etnia> etniaArray = GerenciadorEtnia.listar();
 		
-		Etnia etnia2 = new Etnia();
-		etnia2.setDescricao("Etnia 2");
-		etnia2.setId(1);
-		etniaArray.add(etnia2);
 		
 		Map<String,Object> hashEtnia = new LinkedHashMap<String,Object>();
 		for (int i=0; i< etniaArray.size(); i++) {			

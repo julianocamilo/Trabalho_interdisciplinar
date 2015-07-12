@@ -28,6 +28,7 @@ public class HorarioController extends ApplicationController {
 				throw new Exception(message);
 			}
 			GerenciadorHorario.salvar(this.descricao,Integer.parseInt(id_dia));
+			super.setMessage("msgError", "Cadastrado com sucesso");
 		}catch(Exception ex) {						
 			super.setMessage("msgError", ex.getMessage());
 		}	
@@ -43,17 +44,7 @@ public class HorarioController extends ApplicationController {
 	}
 	
 	private static Map<String,Object> hashDia() throws Exception {
-		//ArrayList<Dia> diaArray = (new GerenciadorDia()).listar();
-		ArrayList<Dia> diaArray = new ArrayList<Dia>();
-		Dia dia = new Dia();
-		dia.setDescricao("Segunda");
-		dia.setId(1);
-		diaArray.add(dia);
-		
-		Dia dia2 = new Dia();
-		dia2.setDescricao("Terça");
-		dia2.setId(2);
-		diaArray.add(dia2);
+		ArrayList<Dia> diaArray = (new GerenciadorDia()).listar();
 		
 		Map<String,Object> hashDia = new LinkedHashMap<String,Object>();
 		for (int i=0; i< diaArray.size(); i++) {			

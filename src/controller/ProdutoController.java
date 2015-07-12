@@ -23,6 +23,7 @@ public class ProdutoController extends ApplicationController {
 			double valor = this.valor.trim().isEmpty() ? 0.00 : Double.parseDouble(this.valor.trim());
 			int quantidade= this.quantidade.trim().isEmpty() ? 0 : Integer.parseInt(this.quantidade.trim());
 			GerenciadorProduto.salvar(this.descricao, valor, quantidade, this.local);
+			super.setMessage("msgError", "Cadastrado com sucesso");
 		}catch(Exception ex) {						
 			super.setMessage("msgError", ex.getMessage());
 		}	

@@ -5,11 +5,13 @@ import helper.HibernateUtil;
 import helper.RandomHelper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import dto.Aluno;
+import dto.Curso;
 import dto.Telefone;
 
 public class AlunoDAO extends HibernateHelper<Aluno> implements IDAO<Aluno> {
@@ -27,8 +29,9 @@ public class AlunoDAO extends HibernateHelper<Aluno> implements IDAO<Aluno> {
 	}
 
 	public ArrayList<Aluno> getAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		HashMap<String, Object> args = new HashMap<String, Object>();
+		String query_string = "SELECT e from Aluno e ";
+		return  (ArrayList<Aluno>) consultar(query_string, args);
 	}
 
 	public Aluno get(Aluno obj) throws Exception {

@@ -21,6 +21,7 @@ public class UsuarioController extends ApplicationController {
 				throw new Exception(message);
 			}
 			GerenciadorUsuario.salvar(this.login, this.senha, Integer.parseInt(this.id_pessoa));
+			super.setMessage("msgError", "Sucesso!");
 		}catch(Exception ex) {						
 			super.setMessage("msgError", ex.getMessage());
 		}	

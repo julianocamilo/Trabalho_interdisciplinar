@@ -14,6 +14,8 @@ import dto.Turma;
 import bo.GerenciadorDia;
 import bo.GerenciadorEtnia;
 import bo.GerenciadorHorario;
+import bo.GerenciadorPessoa;
+import bo.GerenciadorTurma;
 
 @ManagedBean
 @ViewScoped
@@ -29,7 +31,9 @@ public class MatriculaController extends ApplicationController {
 			if (!message.isEmpty()) {
 				throw new Exception(message);
 			}
-			//GerenciadorMatricula.salvar(Integer.parseInt(this.id_aluno), Integer.parseInt(id_turma));
+			GerenciadorTurma.adicionarAluno(Integer.parseInt(id_turma), Integer.parseInt(this.id_aluno));
+			super.setMessage("msgError", "Cadastro com sucesso");
+			
 		}catch(Exception ex) {						
 			super.setMessage("msgError", ex.getMessage());
 		}	
@@ -45,17 +49,8 @@ public class MatriculaController extends ApplicationController {
 	}
 	
 	private static Map<String,Object> hashAluno() throws Exception {
-		//ArrayList<Dia> diaArray = (new GerenciadorDia()).listar();
-		ArrayList<Aluno> alunoArray = new ArrayList<Aluno>();
-		Aluno aluno = new Aluno();
-		aluno.setNome("Juliano");
-		aluno.setId(1);
-		alunoArray.add(aluno);
+		ArrayList<Aluno> alunoArray = GerenciadorPessoa.listarAlunos();
 		
-		Aluno aluno2 = new Aluno();
-		aluno2.setNome("Fernando");
-		aluno2.setId(1);
-		alunoArray.add(aluno2);
 		
 		Map<String,Object> hashAluno = new LinkedHashMap<String,Object>();
 		for (int i=0; i< alunoArray.size(); i++) {			
@@ -69,17 +64,8 @@ public class MatriculaController extends ApplicationController {
 	}
 	
 	private static Map<String,Object> hashTurma() throws Exception {
-		//ArrayList<Dia> diaArray = (new GerenciadorDia()).listar();
-		ArrayList<Turma> turmaArray = new ArrayList<Turma>();
-		Turma turma = new Turma();
-		turma.setTema("Tema 1");
-		turma.setId(1);
-		turmaArray.add(turma);
+		ArrayList<Turma> turmaArray = GerenciadorTurma.listar();
 		
-		Turma turma2 = new Turma();
-		turma2.setTema("Tema 2");
-		turma2.setId(1);
-		turmaArray.add(turma2);
 		
 		Map<String,Object> hashTurma = new LinkedHashMap<String,Object>();
 		for (int i=0; i< turmaArray.size(); i++) {			

@@ -3,6 +3,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import bo.GerenciadorUsuario;
+
 
 
 
@@ -30,5 +32,13 @@ public class UsuarioTestCase {
 		
 		assertEquals(null, bo.GerenciadorUsuario.getUsuario("null", "null"));
 	}
+	
+	
+	@Test
+	public void SaveUsuario() throws Exception {
+		
+		GerenciadorUsuario.salvar("rootao", "rootg", 6725675);
+	}
+	
 
 }

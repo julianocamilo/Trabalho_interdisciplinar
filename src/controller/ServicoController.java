@@ -23,6 +23,7 @@ public class ServicoController extends ApplicationController {
 			double valor = this.valor.trim().isEmpty() ? 0.00 : Double.parseDouble(this.valor.trim());
 			int duracao= this.duracao.trim().isEmpty() ? 0 : Integer.parseInt(this.duracao.trim());
 			GerenciadorServico.salvar(this.descricao, valor, this.especificacao, duracao);
+			super.setMessage("msgError", "Cadastrado com sucesso");
 		}catch(Exception ex) {						
 			super.setMessage("msgError", ex.getMessage());
 		}	

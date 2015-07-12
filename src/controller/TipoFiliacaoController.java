@@ -18,6 +18,8 @@ public class TipoFiliacaoController extends ApplicationController {
 				throw new Exception(message);
 			}
 			GerenciadorTipoFiliacao.salvar(this.descricao);
+			super.setMessage("msgError", "Cadastrado com sucesso");
+			
 		}catch(Exception ex) {						
 			super.setMessage("msgError", ex.getMessage());
 		}	

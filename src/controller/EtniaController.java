@@ -18,6 +18,8 @@ public class EtniaController extends ApplicationController {
 				throw new Exception(message);
 			}
 			GerenciadorEtnia.salvar(this.descricao);
+			super.setMessage("msgError", "Cadastrado com sucesso");
+			
 		}catch(Exception ex) {						
 			super.setMessage("msgError", ex.getMessage());
 		}	
