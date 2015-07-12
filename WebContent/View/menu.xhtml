@@ -11,16 +11,16 @@
 		<nav>
 			<ul class="menu">
 				<li><a href="home.xhtml"><span class="iconic home"></span> Home</a></li>
-				<li><a href="#"><span class="iconic star"></span> Aulas </a></li>
-				<li><a href="pessoa.xhtml"><span class="iconic user"></span> Pessoas</a>
+				<li><a href="listaTurma.xhtml"><span class="iconic star"></span> Turma </a></li>
+				<li><a href="#"><span class="iconic user"></span> Pessoas</a>
 					<ul>
-						<li><a href="#">Usuários</a></li>
-						<li><a href="#">Pessoas</a></li>
+						<li><a href="usuario.xhtml">Usuários</a></li>
+						<li><a href="pessoa.xhtml">Pessoas</a></li>
 					</ul>
 				</li>
 				<li><a href="#"><span class="iconic document"></span> Recursos</a>
 					<ul>
-						<li><a href="#">Matricula</a></li>
+						<li><a href="matricula.xhtml">Matricula</a></li>
 						<li><a href="venda.xhtml">Vendas</a></li>
 						<li><a href="produto.xhtml">Produtos</a></li>
 						<li><a href="servico.xhtml">Serviços</a></li>										
@@ -30,12 +30,22 @@
 					<ul>
 						<li><a href="deficiencia.xhtml">Deficiência</a></li>
 						<li><a href="etnia.xhtml">Etnia</a></li>
-						<li><a href="filiacao.xhtml">Filiação</a></li>					
+						<li><a href="tipoFiliacao.xhtml">Tipo Filiação</a></li>					
 						<li><a href="religiao.xhtml">Religião</a></li>
 						<li><a href="sexo.xhtml">Sexo</a></li>									
+						<li><a href="dia.xhtml">Dia</a></li>
+						<li><a href="horario.xhtml">Horario</a></li>
+						<li><a href="curso.xhtml">Curso</a></li>
 					</ul>
 				</li>
-				<li><a href="#"><span class="iconic cog"></span>Logout</a></li>
+				<li>
+					<h:form> 
+						<h:commandLink action="#{sessionController.logout}">
+							<span class="iconic cog"></span> 
+							Logout 
+						</h:commandLink>
+					</h:form>					
+				</li>
 			</ul>
 			<div class="clearfix"></div>
 		</nav>

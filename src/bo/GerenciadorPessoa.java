@@ -89,7 +89,7 @@ public class GerenciadorPessoa {
 		
 		if(filiacoes != null) salvarFiliacoes(filiacoes, pdao.getId_created());
 		if(horarios != null) salvarHorarios(horarios, pdao.getId_created());
-			
+		
 	}
 	
 	

@@ -8,6 +8,8 @@ import java.util.Date;
 import org.junit.Test;
 
 import dto.Item;
+import dto.ItemVenda;
+import dto.Venda;
 import bo.GerenciadorVenda;
 
 
@@ -44,9 +46,31 @@ public class VendaTestCase {
 	
 	@Test
 	public void GetAllVendaSuccess() throws Exception {
-		GerenciadorVenda.listar();
+	     
+		ArrayList<Venda> vendas = GerenciadorVenda.listar();
+		
+		for (Venda venda : vendas) {
+			
+			System.out.println("ID" + venda.getId());
+			
+			
+		}
+		
+		
 	}
 	
+	@Test
+	public void GetOneVendaSuccess() throws Exception {
+		 Venda v = GerenciadorVenda.selecionar(7585273);
+		
+		 System.out.println("Quant: " + v );
+		 
+		/* for (ItemVenda iv : v.getItemvendas()) {
+			System.out.println("");
+		}*/
+		
+		
+	}
 	
 	
 	

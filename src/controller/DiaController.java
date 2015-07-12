@@ -2,11 +2,13 @@ package controller;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import bo.GerenciadorTipoFiliacao;
+
+import bo.GerenciadorDia;
+import bo.GerenciadorEtnia;
 
 @ManagedBean
 @ViewScoped
-public class FiliacaoController extends ApplicationController {
+public class DiaController extends ApplicationController {
 	private String descricao;
 	private String messageError;
 	
@@ -17,7 +19,7 @@ public class FiliacaoController extends ApplicationController {
 			if (!message.isEmpty()) {
 				throw new Exception(message);
 			}
-			GerenciadorTipoFiliacao.salvar(this.descricao);
+			GerenciadorDia.salvar(this.descricao);
 		}catch(Exception ex) {						
 			super.setMessage("msgError", ex.getMessage());
 		}	

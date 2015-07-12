@@ -6,6 +6,7 @@ import helper.RandomHelper;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import dto.Item;
 import dto.Venda;
 
 
@@ -29,13 +30,21 @@ public class VendaDAO extends HibernateHelper<Venda> implements IDAO<Venda> {
 
 	public ArrayList<Venda> getAll() throws Exception {
 		HashMap<String, Object> args = new HashMap<String, Object>();
-		String query_string = "SELECT i from Venda i ";
+		String query_string = "SELECT i from Venda i";
 		return  (ArrayList<Venda>) consultar(query_string, args);
 		
 	}
 
 	public Venda get(Venda obj) throws Exception {
-		return selecionar(obj, obj.getId());
+		HashMap<String, Object> args = new HashMap<String, Object>();
+		String query_string = "SELECT i from Venda i"; // join fetch i.itemvendas WHERE i.id = :paramId";
+		//args.put("paramId", obj.getId());
+		
+		ArrayList<Venda> vendas = (ArrayList<Venda>) selecionar(query_string, args);
+		
+		if (vendas.isEmpty()) return null;
+		
+		return vendas.get(0);
 	}
 	
 	

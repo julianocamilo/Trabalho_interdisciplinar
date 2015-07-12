@@ -5,14 +5,25 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import dto.Etnia;
+import dto.Horario;
+import dto.Religiao;
+import dto.Sexo;
+import dto.Telefone;
+import dto.TipoFiliacao;
+
 import java.util.List;
 
+import bo.GerenciadorHorario;
 import bo.GerenciadorItem;
 import bo.GerenciadorPessoa;
+import bo.GerenciadorTipoFiliacao;
 import bo.GerenciadorVenda;
 
 @ManagedBean
@@ -32,6 +43,27 @@ public class PessoaController extends ApplicationController {
 		
 	} 
 	
+	public class Filiacao {
+		public String id;
+		public String descricao;
+		public String tipo;
+		public String id_tipo;
+		
+		public String getId() {
+			return id;
+		}
+		public String getDescricao() {
+			return descricao;
+		}
+		public String getTipo() {
+			return tipo;
+		}
+		public String getId_tipo() {
+			return id_tipo;
+		}
+		
+	}
+	
 	private String cep;	
 	private String logrado;
 	private String nome;
@@ -39,14 +71,21 @@ public class PessoaController extends ApplicationController {
 	private String id_etnia;
 	private String id_religiao;
 	private String id_sexo;
-	private String tipo;
+	private String tipo = "0";
 	private String formacao;
 	private String fpagamento;
 	private String dt_admissao;
 	private String cargo;
 	
 	private List<Deficiencias> itensList =  new ArrayList<Deficiencias>();
+	private List<Filiacao> filiacaoList =  new ArrayList<Filiacao>();
+	private List<Horario> horarioList =  new ArrayList<Horario>();
+	private List<Telefone> telefoneList =  new ArrayList<Telefone>();
+	private String telefone;
+	private String descricao_filiacao;	
+	private String id_tipoFiliacao;
 	private String id_deficiencia;
+	private String id_horario;
 	private String messageError;
 	
 	public void save() throws Exception{
@@ -67,20 +106,130 @@ public class PessoaController extends ApplicationController {
 			
 			switch (tipo) {
 			case 0:
-				GerenciadorPessoa.salvarAluno(cepInt, this.fpagamento, this.logrado, this.nome, this.nome_social, id_sexo_int, id_etnia_int, id_religiao_int, retornaIdItens());
+//				GerenciadorPessoa.salvarAluno(cepInt, this.fpagamento, this.logrado, this.nome, this.nome_social, id_sexo_int, id_etnia_int, id_religiao_int, retornaIdItens(), retornaHashfiliacao(), horarioList, telefoneList);
 				break;
 			case 1:	
-				GerenciadorPessoa.salvarFuncionario(cepInt, this.cargo, data_admissao, this.logrado, this.nome, this.nome_social, id_sexo_int, id_etnia_int, id_religiao_int, retornaIdItens());
+			//	GerenciadorPessoa.salvarFuncionario(cepInt, this.cargo, data_admissao, this.logrado, this.nome, this.nome_social, id_sexo_int, id_etnia_int, id_religiao_int, retornaIdItens(), retornaHashfiliacao(), horarioList, telefoneList);
 				break;
 			case 2:	
-				GerenciadorPessoa.salvarProfessor(cepInt, this.formacao, this.logrado, this.nome, this.nome_social, id_sexo_int, id_etnia_int, id_religiao_int, retornaIdItens());			
+				//GerenciadorPessoa.salvarProfessor(cepInt, this.formacao, this.logrado, this.nome, this.nome_social, id_sexo_int, id_etnia_int, id_religiao_int, retornaIdItens(), retornaHashfiliacao(), horarioList, telefoneList);			
 			}									
 		}catch(Exception ex) {						
 			super.setMessage("msgError", ex.getMessage());
 		}	
-	}	
-
-	public void addItem(){
+	}		
+	
+	private HashMap<Integer, String> retornaHashfiliacao() {
+		HashMap<Integer, String> hashFiliacao = new HashMap<Integer, String>();
+		for (int i = 0; i < filiacaoList.size(); i++){
+			hashFiliacao.put(Integer.parseInt(filiacaoList.get(i).getId()), filiacaoList.get(i).getDescricao());
+		}
+		return hashFiliacao;
+	}
+	
+	private static Map<String,Object> hashTipoFiliacao() throws Exception {
+		//ArrayList<TipoFiliacao> tipo_filiacao = (new GerenciadorTipoFiliacao()).listar();
+		ArrayList<TipoFiliacao> tipo_filiacao = new ArrayList<TipoFiliacao>();
+		TipoFiliacao tipofiliacao = new TipoFiliacao();
+		tipofiliacao.setDescricao("Pai");
+		tipofiliacao.setId(1);
+		tipo_filiacao.add(tipofiliacao);
+		
+		TipoFiliacao tipofiliacao2 = new TipoFiliacao();
+		tipofiliacao2.setDescricao("Mãe");
+		tipofiliacao2.setId(2);
+		tipo_filiacao.add(tipofiliacao2);
+		
+		Map<String,Object> hashFiliacao = new LinkedHashMap<String,Object>();
+		for (int i=0; i< tipo_filiacao.size(); i++) {			
+			hashFiliacao.put(tipo_filiacao.get(i).getDescricao(), tipo_filiacao.get(i).getId()); //label, value			
+		}		
+		return hashFiliacao;
+	}
+ 
+	public Map<String,Object> getTipoFiliacao() throws Exception {
+		return hashTipoFiliacao();
+	}
+	
+	// Sexo
+	private static Map<String,Object> hashSexo() throws Exception {
+		//ArrayList<Sexo> sexoArray = (new GerenciadorSexo()).listar();
+		ArrayList<Sexo> sexoArray = new ArrayList<Sexo>();
+		Sexo sexo = new Sexo();
+		sexo.setDescricao("Masculino");
+		sexo.setId(1);
+		sexoArray.add(sexo);
+		
+		Sexo sexo2 = new Sexo();
+		sexo2.setDescricao("Feminino");
+		sexo2.setId(1);
+		sexoArray.add(sexo2);
+		
+		Map<String,Object> hashSexo = new LinkedHashMap<String,Object>();
+		for (int i=0; i< sexoArray.size(); i++) {			
+			hashSexo.put(sexoArray.get(i).getDescricao(), sexoArray.get(i).getId()); //label, value			
+		}		
+		return hashSexo;
+	}
+ 
+	public Map<String,Object> getSexo() throws Exception {
+		return hashSexo();
+	}
+	// End Sexo
+	
+	// Religiao
+	private static Map<String,Object> hashReligiao() throws Exception {
+		//ArrayList<Religiao> religiaoArray = (new GerenciadorReligiao()).listar();
+		ArrayList<Religiao> religiaoArray = new ArrayList<Religiao>();
+		Religiao religiao = new Religiao();
+		religiao.setDescricao("Religiao 1");
+		religiao.setId(1);
+		religiaoArray.add(religiao);
+		
+		Religiao religiao2 = new Religiao();
+		religiao2.setDescricao("Religiao 2");
+		religiao2.setId(1);
+		religiaoArray.add(religiao2);
+		
+		Map<String,Object> hashReligiao = new LinkedHashMap<String,Object>();
+		for (int i=0; i< religiaoArray.size(); i++) {			
+			hashReligiao.put(religiaoArray.get(i).getDescricao(), religiaoArray.get(i).getId()); //label, value			
+		}		
+		return hashReligiao;
+	}
+ 
+	public Map<String,Object> getReligiao() throws Exception {
+		return hashReligiao();
+	}
+	// End Religiao
+		
+	// Etnia
+	private static Map<String,Object> hashEtnia() throws Exception {
+		//ArrayList<Etnia> etniaArray = (new GerenciadorEtnia()).listar();
+		ArrayList<Etnia> etniaArray = new ArrayList<Etnia>();
+		Etnia etnia = new Etnia();
+		etnia.setDescricao("Etnia 1");
+		etnia.setId(1);
+		etniaArray.add(etnia);
+		
+		Etnia etnia2 = new Etnia();
+		etnia2.setDescricao("Etnia 2");
+		etnia2.setId(1);
+		etniaArray.add(etnia2);
+		
+		Map<String,Object> hashEtnia = new LinkedHashMap<String,Object>();
+		for (int i=0; i< etniaArray.size(); i++) {			
+			hashEtnia.put(etniaArray.get(i).getDescricao(), etniaArray.get(i).getId()); //label, value			
+		}		
+		return hashEtnia;
+	}
+ 
+	public Map<String,Object> getEtnia() throws Exception {
+		return hashEtnia();
+	}
+	// End Etnia
+		
+	public void adddeficiencia(){
 		if (this.id_deficiencia.isEmpty()) return;
 		//String nome = GerenciadorItem.retornaItem(id_deficiencia);
 		String nome = "Teste";
@@ -90,6 +239,35 @@ public class PessoaController extends ApplicationController {
 		itensList.add(item);
 		this.id_deficiencia = "";				
 	} 	
+	
+	public void addFiliacao() {
+		if (this.descricao_filiacao.trim().isEmpty()) return;
+		
+		Filiacao filiacao = new Filiacao();
+		filiacao.descricao = this.descricao_filiacao;
+		filiacao.id_tipo = this.id_tipoFiliacao;
+		filiacaoList.add(filiacao);
+		this.descricao_filiacao = "";
+		this.id_tipoFiliacao = "";
+	}
+	
+	public void addTelefone() {
+		if (this.telefone.trim().isEmpty()) return;
+		
+		Telefone telefone = new Telefone();
+		telefone.setTelefone(this.telefone);		
+		telefoneList.add(telefone);
+		this.telefone = "";		
+	}
+	
+	public void addHorario() {
+		if (this.id_horario.trim().isEmpty()) return;
+		//Horario horario =  GerenciadorHorario.listarPorId(integer.parseInt(this.id_horario));		
+				
+		Horario horario = new Horario("Horario 1", 1);		
+		horarioList.add(horario);		
+		this.id_horario = "";
+	}
 	
 	private ArrayList<Integer> retornaIdItens() {
 		ArrayList<Integer> array = new ArrayList<Integer>();
@@ -223,6 +401,62 @@ public class PessoaController extends ApplicationController {
 
 	public void setId_deficiencia(String id_deficiencia) {
 		this.id_deficiencia = id_deficiencia;
+	}
+
+	public List<Filiacao> getFiliacaoList() {
+		return filiacaoList;
+	}
+
+	public void setFiliacaoList(List<Filiacao> filiacaoList) {
+		this.filiacaoList = filiacaoList;
+	}
+
+	public String getDescricao_filiacao() {
+		return descricao_filiacao;
+	}
+
+	public void setDescricao_filiacao(String descricao_filiacao) {
+		this.descricao_filiacao = descricao_filiacao;
+	}
+
+	public String getId_tipoFiliacao() {
+		return id_tipoFiliacao;
+	}
+
+	public void setId_tipoFiliacao(String id_tipoFiliacao) {
+		this.id_tipoFiliacao = id_tipoFiliacao;
+	}
+
+	public String getId_horario() {
+		return id_horario;
+	}
+
+	public void setId_horario(String id_horario) {
+		this.id_horario = id_horario;
+	}
+
+	public List<Horario> getHorarioList() {
+		return horarioList;
+	}
+
+	public void setHorarioList(List<Horario> horarioList) {
+		this.horarioList = horarioList;
+	}
+
+	public List<Telefone> getTelefoneList() {
+		return telefoneList;
+	}
+
+	public void setTelefoneList(List<Telefone> telefoneList) {
+		this.telefoneList = telefoneList;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 }

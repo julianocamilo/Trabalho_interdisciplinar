@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:c="http://java.sun.com/jstl/core">
 <h:head>
-<title>Cadastro de Venda</title>
+<title>Cadastro de Pessoa</title>
 <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
 <h:outputStylesheet library="css" name="style.css"/>
 <h:outputStylesheet library="css" name="iconic.css"/>
@@ -20,55 +20,153 @@
 	</ui:insert>		
 	<div class="body-center">
 		<center>
-			<h:outputLabel class="title-form"> Cadastro de Venda</h:outputLabel>
+			<h:outputLabel class="title-form"> Cadastro de Pessoa</h:outputLabel>
 		</center>	
 		<hr/>
 		<h:form id="form-venda" prependId="false">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<h:outputLabel>Data</h:outputLabel>
-			<h:inputText id="data" value="#{vendaController.data}"/>
+			<h:outputLabel>CEP</h:outputLabel>
+			<h:inputText id="Cep" value="#{pessoaController.cep}"/>
 			
-			<h:outputLabel>Valor</h:outputLabel>
-			<h:inputText disabled="true" id="valor" class="apenas-valor" size="10" maxlength="10" value="#{vendaController.valor}"/>
-						
-			<h:outputLabel>Id Pessoa</h:outputLabel>
-			<h:inputText id="id_pessoa" class="apenas-numero" value="#{vendaController.id_pessoa}"/>
-			<br/>					
+			<h:outputLabel>Logradouro</h:outputLabel>
+			<h:inputText id="logradouro" value="#{pessoaController.logrado}"/>
+			
+			<h:outputLabel>Nome Social</h:outputLabel>
+			<h:inputText id="nome_social" value="#{pessoaController.nome_social}"/>
+			<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<h:outputLabel>Nome</h:outputLabel>
+			<h:inputText id="nome" value="#{pessoaController.nome}"/>
+							
+			<h:outputLabel> Sexo </h:outputLabel>
+			<h:selectOneMenu value="#{pessoaController.id_sexo}">
+   				<f:selectItems value="#{pessoaController.sexo}" />
+   			</h:selectOneMenu>
+   			
+   			<h:outputLabel> Religião </h:outputLabel>
+			<h:selectOneMenu value="#{pessoaController.id_religiao}">
+   				<f:selectItems value="#{pessoaController.religiao}" />
+   			</h:selectOneMenu>
+   			
+   			<h:outputLabel> Etnia </h:outputLabel>
+			<h:selectOneMenu value="#{pessoaController.id_etnia}">
+   				<f:selectItems value="#{pessoaController.etnia}" />
+   			</h:selectOneMenu>
+   			
+   			<br/>
+   			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   			<h:selectOneMenu value="#{pessoaController.tipo}">
+				<f:selectItem itemValue="0" itemLabel="Professor"/>
+				<f:selectItem itemValue="1" itemLabel="Aluno"/>
+				<f:selectItem itemValue="2" itemLabel="Funcionario"/>
+			</h:selectOneMenu>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<h:commandButton value="Mostrar Campo" id="mostraCampo" action="#" />
+			<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			
+			<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;								
+			<h:outputLabel rendered="#{pessoaController.tipo == '0'}">Formação</h:outputLabel>
+			<h:inputText id="formacao" value="#{pessoaController.formacao}" rendered="#{pessoaController.tipo == '0'}"/>
+			
+			<h:outputLabel rendered="#{pessoaController.tipo == '1'}">Forma de Pagamento</h:outputLabel>
+			<h:inputText id="fpagamento" value="#{pessoaController.fpagamento}" rendered="#{pessoaController.tipo == '1'}"/>
+			
+			<h:outputLabel rendered="#{pessoaController.tipo == '2'}">Data de Admissão</h:outputLabel>
+			<h:inputText id="dtAdmissao" value="#{pessoaController.dt_admissao}" rendered="#{pessoaController.tipo == '2'}"/>
+			
+			<h:outputLabel rendered="#{pessoaController.tipo == '2'}">Cargo</h:outputLabel>
+			<h:inputText id="cargo" value="#{pessoaController.cargo}" rendered="#{pessoaController.tipo == '2'}"/>
+			<br/>						
 			<div class="table_wraper">
 				<br/>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<h:outputLabel>Id do Item</h:outputLabel>
-				<h:inputText value="#{vendaController.id_item}"/>
+				<h:outputLabel>Id da deficiencia</h:outputLabel>
+				<h:inputText value="#{pessoaController.id_deficiencia}"/>
 				&nbsp;&nbsp;
-				<h:commandButton value="Adicionar" id="add_item" action="#{vendaController.addItem}" />
+				<h:commandButton value="Adicionar" id="add_item" action="#{pessoaController.adddeficiencia}" />
 				
-				<h:dataTable value="#{vendaController.itensList}" id="table_itens" var="itens" rendered="#{vendaController.itensList.size() > 0}">					
+				<h:dataTable value="#{pessoaController.itensList}" id="table_itens" var="itens" >					
 					<h:column>
 						<f:facet name="header"> Id </f:facet>
 						<h:outputText value="#{itens.id}" />						
 					</h:column>
 					<h:column>
-						<f:facet name="header"> Nome </f:facet>
+						<f:facet name="header"> descricao </f:facet>
 						<h:outputText value="#{itens.nome}" />						
-					</h:column>
-					<h:column>
-						<f:facet name="header"> Tipo </f:facet>
-						<h:outputText value="#{itens.tipo}" />						
-					</h:column>
-					<h:column>
-						<f:facet name="header"> Valor </f:facet>
-						<h:outputText value="#{itens.valor}" />						
-					</h:column>
+					</h:column>					
 				</h:dataTable>
 							
 			</div>
 			<br/>
+			<div class="table_wraper">
+				<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<h:outputLabel>descricao</h:outputLabel>
+				<h:inputText value="#{pessoaController.descricao_filiacao}"/>
+				&nbsp;&nbsp;
+				<h:selectOneMenu value="#{pessoaController.id_tipoFiliacao}">
+   					<f:selectItems value="#{pessoaController.tipoFiliacao}" />
+   				</h:selectOneMenu>
+   				
+				<h:commandButton value="Adicionar" id="add_filiacao" action="#{pessoaController.addFiliacao}" />
+				
+				<h:dataTable value="#{pessoaController.filiacaoList}" id="table_filiacao" var="itens" >					
+					<h:column>
+						<f:facet name="header"> descricao </f:facet>
+						<h:outputText value="#{itens.descricao}" />						
+					</h:column>
+					<h:column>
+						<f:facet name="header"> id TipoFiliação</f:facet>
+						<h:outputText value="#{itens.id_tipo}" />						
+					</h:column>					
+				</h:dataTable>
+							
+			</div>
+			
+			<div class="table_wraper">
+				<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<h:outputLabel>Id Horario</h:outputLabel>
+				<h:inputText value="#{pessoaController.id_horario}"/>
+				&nbsp;&nbsp;			
+				<h:commandButton value="Adicionar" id="add_Horario" action="#{pessoaController.addHorario}" />
+				
+				<h:dataTable value="#{pessoaController.horarioList}" id="table_horario" var="itens" >					
+					<h:column>
+						<f:facet name="header"> descricao </f:facet>
+						<h:outputText value="#{itens.descricao}" />						
+					</h:column>					
+				</h:dataTable>
+							
+			</div>
+			
+			<div class="table_wraper">
+				<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<h:outputLabel>Telefone</h:outputLabel>
+				<h:inputText value="#{pessoaController.telefone}"/>
+				&nbsp;&nbsp;			
+				<h:commandButton value="Adicionar" id="add_telefone" action="#{pessoaController.addTelefone}" />
+				
+				<h:dataTable value="#{pessoaController.telefoneList}" id="table_telefone" var="itens" >					
+					<h:column>
+						<f:facet name="header"> Telefone </f:facet>
+						<h:outputText value="#{itens.telefone}" />						
+					</h:column>					
+				</h:dataTable>
+							
+			</div>
+			
+			<br/>
 			<br/>
 			<hr />
-			<h:commandButton value="Salvar" id="button" class="center" action="#{vendaController.save}" />
+			<h:commandButton value="Salvar" id="button" class="center" action="#{pessoaController.save}" />
 			<br/>
 			<h:messages id="msgErro" class="message"></h:messages>
-			<h:outputText value="#{vendaController.messageError}"/>		
+			<h:outputText value="#{pessoaController.messageError}"/>		
 		</h:form>
 	</div>
 </h:body>

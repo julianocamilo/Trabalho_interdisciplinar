@@ -24,7 +24,13 @@ public class ItemDAO extends HibernateHelper<Item> implements IDAO<Item> {
 	}
 
 	public Item get(Item obj) throws Exception {
-		return selecionar(obj, obj.getId());
+		
+		HashMap<String, Object> args = new HashMap<String, Object>();
+		String query_string = "SELECT i from Item i fetch all properties WHERE i.id = :paramId";
+		args.put("paramId", obj.getId());
+		ArrayList<Item> d =  (ArrayList<Item>) selecionar(query_string, args);
+		return d.get(0);
+		//return selecionar(obj, obj.getId());
 	}
 	
 	

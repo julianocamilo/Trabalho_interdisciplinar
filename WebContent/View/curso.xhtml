@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-<title>Cadastro de Tipo de Filiação</title>
+<title>Cadastro de Curso</title>
 <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
 <h:outputStylesheet library="css" name="style.css"/>
 <h:outputStylesheet library="css" name="iconic.css"/>
@@ -19,19 +19,19 @@
 	</ui:insert>		
 	<div class="body-center">
 		<center>
-			<h:outputLabel class="title-form"> Cadastro de Tipo de Filiação</h:outputLabel>
+			<h:outputLabel class="title-form"> Cadastro de Curso</h:outputLabel>
 		</center>	
 		<hr/>
-		<h:form id="form-filiacao" prependId="false">
+		<h:form id="form-etnia" prependId="false">
 			<h:outputLabel>Descrição</h:outputLabel>
-			<h:inputText id="descricao" value="#{filiacaoController.descricao}"/>
+			<h:inputText id="descricao" value="#{cursoController.descricao}"/>
 			<br/>
 			<br/>
 			<hr />
-			<h:commandButton value="Salvar" id="button" class="center" action="#{filiacaoController.save}" />
+			<h:commandButton value="Salvar" id="button" class="center" action="#{cursoController.save}" />
 			<br/>
 			<h:messages id="msgErro" class="message"></h:messages>
-			<h:outputText value="#{filiacaoController.messageError}"/>		
+			<h:outputText value="#{cursoController.messageError}"/>		
 		</h:form>
 	</div>
 </h:body>

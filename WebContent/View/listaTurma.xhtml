@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core">
+<h:head>
+<title>Lista de Turma</title>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
+<h:outputStylesheet library="css" name="style.css"/>
+<h:outputStylesheet library="css" name="iconic.css"/>
+<h:outputStylesheet library="css" name="global.css"/>
+<h:outputScript library="javascript" name="jquery-2.1.4.min.js"/>
+<h:outputScript library="javascript" name="prefix-free.js"/>
+<h:outputScript library="javascript" name="application.js"/>
+</h:head>
+<h:body>	
+	<ui:insert name="menu" >
+		<ui:include src="menu.xhtml" />
+	</ui:insert>		
+	<div class="body-center">
+		<center>
+			<h:outputLabel class="title-form"> Lista de Turma</h:outputLabel>
+		</center>	
+		<hr/>		
+		<div class="table_wraper">
+			<h:dataTable value="#{turmaController.turmaList}" id="table_itens" var="itens">							
+				<h:column>
+					<f:facet name="header"> Capacidade </f:facet>
+					<h:outputText value="#{itens.capacidade}" />						
+				</h:column>
+				<h:column>
+					<f:facet name="header"> Curso </f:facet>
+					<h:outputText value="#{itens.curso.descricao}" />						
+				</h:column>
+				<h:column>
+					<f:facet name="header"> Tema </f:facet>
+					<h:outputText value="#{itens.tema}" />						
+				</h:column>
+				<h:column>
+					<f:facet name="header"> Data de Inicio </f:facet>
+					<h:outputText value="#{itens.data_inicio}" />						
+				</h:column>
+				<h:column>
+					<f:facet name="header"> Data de Final </f:facet>
+					<h:outputText value="#{itens.data_fim}" />						
+				</h:column>
+			</h:dataTable>						
+		</div>
+		<br/>
+		<a href="cadastroTurma.xhtml" class="center button"> Cadastrar Turma </a>													
+	</div>
+	
+</h:body>
+</html>
