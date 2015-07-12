@@ -9,6 +9,8 @@ import java.util.HashMap;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import dto.Item;
+
 import java.util.List;
 
 import bo.GerenciadorItem;
@@ -23,10 +25,15 @@ public class VendaController extends ApplicationController {
 		public String nome;
 		public String tipo;
 		public String valor;
+		public String quantidade;
 		public String getId() {
 			return id;
 		}
-		
+				
+		public String getQuantidade() {
+			return quantidade;
+		}
+
 		public String getNome() {
 			return nome;
 		}
@@ -46,6 +53,8 @@ public class VendaController extends ApplicationController {
 	private String id_pessoa;
 	private List<Itens> itensList =  new ArrayList<Itens>();
 	private String id_item;
+	private String tipo; 
+	private String quantidade_item;
 	private String messageError;
 	
 	public void save() throws Exception{
@@ -59,7 +68,7 @@ public class VendaController extends ApplicationController {
 			DateFormat formatter = new SimpleDateFormat("MM/dd/yy");  
 			Date date = (Date)formatter.parse(this.data);
 			int id_pessoa =Integer.parseInt(this.id_pessoa);
-			GerenciadorVenda.salvar(date, valor, id_pessoa, retornaIdItens());
+			GerenciadorVenda.salvar(date, valor, id_pessoa, retornaItens());
 		}catch(Exception ex) {						
 			super.setMessage("msgError", ex.getMessage());
 		}	
@@ -67,14 +76,23 @@ public class VendaController extends ApplicationController {
 
 	public void addItem(){
 		//if (this.id_item.isEmpty()) return;
-		//HashMap<Object, Object> item = GerenciadorItem.retornaItem(id_item);
-		
+		//HashMap<Object, Object> item = GerenciadorItem.retornaItem(id_item);		//
 		// Usei pra teste
+		HashMap<Object, Object> itemHash = new HashMap<Object, Object>();		
+		itemHash.put("id", "1");
+		itemHash.put("nome", "test");
+		itemHash.put("valor", "2.50");		
+		
+		if (quantidade_item.trim().isEmpty())
+			quantidade_item = "1";
+			
 		Itens item = new Itens();
-		item.id = "1";
-		item.nome = "teste";
-		item.tipo = "Produto";
-		item.valor = "2.50";
+		item.id = itemHash.get("id").toString();
+		item.nome = itemHash.get("nome").toString();
+		item.tipo = Integer.parseInt(this.tipo) == 0 ? "Produto" : "Serviço";
+		item.quantidade = quantidade_item;
+		double valorTotalItem = Integer.parseInt(quantidade_item) * Double.parseDouble(itemHash.get("valor").toString()); 
+		item.valor = String.valueOf(valorTotalItem);
 		itensList.add(item);
 		double valorTotal = 0;
 		for(int a = 0; a < itensList.size() ; a++ )
@@ -83,10 +101,15 @@ public class VendaController extends ApplicationController {
 		this.id_item = "";				
 	} 	
 	
-	private ArrayList<Integer> retornaIdItens() {
-		ArrayList<Integer> array = new ArrayList<Integer>();
+	private ArrayList<Item> retornaItens() {
+		ArrayList<Item> array = new ArrayList<Item>();
 		for(int a = 0; a < itensList.size() ; a++ )
-			array.add(Integer.parseInt(itensList.get(a).id));
+		{
+			Item item = new Item();
+			item.setValor(Double.parseDouble(itensList.get(a).valor));
+			item.setQuantidadeSolicitada(Integer.parseInt(itensList.get(a).quantidade));
+			array.add(item);
+		}
 		return array;
 	}
 	
@@ -146,6 +169,22 @@ public class VendaController extends ApplicationController {
 
 	public void setItensList(List<Itens> itensList) {
 		this.itensList = itensList;
-	} 
-		
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getQuantidade_item() {
+		return quantidade_item;
+	}
+
+	public void setQuantidade_item(String quantidade_item) {
+		this.quantidade_item = quantidade_item;
+	}
+	
 }

@@ -40,8 +40,14 @@
 				<h:outputLabel>Id do Item</h:outputLabel>
 				<h:inputText value="#{vendaController.id_item}"/>
 				&nbsp;&nbsp;
-				<h:commandButton value="Adicionar" id="add_item" action="#{vendaController.addItem}" />
-				
+				<h:outputLabel>Quantidade</h:outputLabel>
+				<h:inputText class="apenas-numero" value="#{vendaController.quantidade_item}"/>
+				<h:selectOneMenu id="tipo_produto" value="#{vendaController.tipo}">
+					<f:selectItem itemValue="0" itemLabel="Produto"/>
+					<f:selectItem itemValue="1" itemLabel="Serviço"/>
+				</h:selectOneMenu>
+								
+				<h:commandButton value="Adicionar" id="add_item" action="#{vendaController.addItem}" />									
 				<h:dataTable value="#{vendaController.itensList}" id="table_itens" var="itens" rendered="#{vendaController.itensList.size() > 0}">					
 					<h:column>
 						<f:facet name="header"> Id </f:facet>
