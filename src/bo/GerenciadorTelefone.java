@@ -12,12 +12,14 @@ public class GerenciadorTelefone {
 	
 	public static void salvar(String telefone, int pessoa_id) throws Exception{
 		if(telefone.isEmpty()) throw new Exception("Telefone é campo obrigatório");
+		
 		TelefoneDao.save(new Telefone(telefone, pessoa_id));
 	}
-	
+		
+		
+
 	public static ArrayList<Telefone> listar() throws Exception{
 		return TelefoneDao.getAll();
 	}
-	
-	
+		
 }

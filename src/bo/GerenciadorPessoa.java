@@ -5,7 +5,7 @@ import helper.RandomHelper;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
+
 import java.util.Map.Entry;
 
 import javax.persistence.EntityManager;
@@ -105,7 +105,7 @@ public class GerenciadorPessoa {
 		if(filiacoes != null) salvarFiliacoes(filiacoes, pdao.getId_created());
 		if(horarios != null)  salvarHorarios(horarios, pdao.getId_created());
 		if(telefones != null) salvarTelefones(telefones, pdao.getId_created());
-			
+
 	}
 	
 	

@@ -1,8 +1,12 @@
 package controller;
 
+import java.io.IOException;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
 import dto.Session; 
 import dto.Usuario;
 import bo.GerenciadorUsuario;
@@ -34,6 +38,11 @@ public class SessionController  extends ApplicationController{
 			super.setMessage("msgError", ex.getMessage());
 		}		
 	}
+	
+	public void logout() throws IOException {
+		Session.getInstance().encerrarSessao();
+		FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+	} 
 	
 	public String getLogin() {
 		return login;

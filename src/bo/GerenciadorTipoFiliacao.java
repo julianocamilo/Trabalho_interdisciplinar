@@ -19,6 +19,4 @@ public class GerenciadorTipoFiliacao {
 		return TipoFiliacaoDao.getAll();
 	}
 	
-	
-	
 }

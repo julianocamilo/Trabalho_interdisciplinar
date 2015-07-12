@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<title>Cadastro de Turma</title>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
+<h:outputStylesheet library="css" name="style.css"/>
+<h:outputStylesheet library="css" name="iconic.css"/>
+<h:outputStylesheet library="css" name="global.css"/>
+<h:outputScript library="javascript" name="jquery-2.1.4.min.js"/>
+<h:outputScript library="javascript" name="prefix-free.js"/>
+<h:outputScript library="javascript" name="application.js"/>
+</h:head>
+<h:body>	
+	<ui:insert name="menu" >
+		<ui:include src="menu.xhtml" />
+	</ui:insert>		
+	<div class="body-center">
+		<center>
+			<h:outputLabel class="title-form"> Cadastro de Turma</h:outputLabel>
+		</center>	
+		<hr/>
+		<h:form id="form-venda" prependId="false">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<h:outputLabel>Capacidade</h:outputLabel>
+			<h:inputText id="capacidade" class="apenas-numero" value="#{turmaController.capacidade}"/>
+			
+			<h:outputLabel>Data de Inicio</h:outputLabel>
+			<h:inputText id="data_ini" value="#{turmaController.data_ini}"/>
+						
+			<h:outputLabel>Data de Fim</h:outputLabel>
+			<h:inputText id="data_fin" value="#{turmaController.data_fim}"/>
+			<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<h:outputLabel>Tema</h:outputLabel>
+			<h:inputText id="tema" value="#{turmaController.tema}"/>
+			
+			<h:outputLabel> Curso </h:outputLabel>
+			<h:selectOneMenu value="#{turmaController.curso_id}">
+   				<f:selectItems value="#{turmaController.curso}" />
+   			</h:selectOneMenu>
+   						
+			<br/>										
+			<div class="table_wraper">
+				<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<h:outputLabel>Id do Produto</h:outputLabel>
+				<h:inputText value="#{turmaController.produtoId}"/>
+				&nbsp;&nbsp;
+							
+				<h:commandButton value="Adicionar" id="add_item" action="#{turmaController.addProduto}" />									
+				<h:dataTable value="#{turmaController.produtoList}" id="table_itens" var="itens" >					
+					<h:column>
+						<f:facet name="header"> Id </f:facet>
+						<h:outputText value="#{itens.id}" />						
+					</h:column>
+					<h:column>
+						<f:facet name="header"> descrição </f:facet>
+						<h:outputText value="#{itens.descricao}" />						
+					</h:column>					
+				</h:dataTable>
+							
+			</div>
+			<br/>
+			<div class="table_wraper">
+				<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<h:outputLabel>Id do Horario</h:outputLabel>
+				<h:inputText value="#{turmaController.horarioId}"/>
+				&nbsp;&nbsp;						
+				<h:commandButton value="Adicionar" id="add_horario" action="#{turmaController.addHorario}" />									
+				<h:dataTable value="#{turmaController.horarioList}" id="table_Horario" var="itens" >					
+					<h:column>
+						<f:facet name="header"> Id </f:facet>
+						<h:outputText value="#{itens.id}" />						
+					</h:column>
+					<h:column>
+						<f:facet name="header"> descrição </f:facet>
+						<h:outputText value="#{itens.descricao}" />						
+					</h:column>					
+				</h:dataTable>					
+			</div>
+			<br/>
+			<hr />
+			<h:commandButton value="Salvar" id="button" class="center" action="#{turmaController.save}" />
+			<br/>
+			<h:messages id="msgErro" class="message"></h:messages>
+			<h:outputText value="#{turmaController.messageError}"/>		
+		</h:form>
+	</div>
+</h:body>
+</html>
