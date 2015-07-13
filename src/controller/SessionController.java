@@ -15,9 +15,6 @@ import bo.GerenciadorUsuario;
 @ManagedBean
 @SessionScoped
 public class SessionController  extends ApplicationController{
-	@EJB
-
-	
 	private String login;
 	private String senha;
 	private String messageError;
@@ -32,16 +29,16 @@ public class SessionController  extends ApplicationController{
 			}
 			else
 			{
-				Session.getInstance().setAttribute("usuarioLogado", user);			
+				Session.getInstance().setAttribute("username", user.getLogin());			
 			}
+			FacesContext.getCurrentInstance().getExternalContext().redirect("home.xhtml");
 		} catch(Exception ex) {			
 			super.setMessage("msgError", ex.getMessage());
 		}		
 	}
 	
 	public void logout() throws IOException {
-		Session.getInstance().encerrarSessao();
-		FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+		Session.getInstance().encerrarSessao();		
 	} 
 	
 	public String getLogin() {

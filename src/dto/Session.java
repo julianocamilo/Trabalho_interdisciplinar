@@ -1,5 +1,7 @@
 package dto;
 
+import java.io.IOException;
+
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
@@ -30,16 +32,17 @@ public class Session {
 		currentExternalContext().getSessionMap().put(nome, valor);
 	}
 		
-	public Usuario getUsuarioLogado() {
-		return (Usuario) getAttribute("usuarioLogado");
+	public String getUsuarioLogado() {
+		return  getAttribute("username").toString();
 	}
 	
-	public void setUsuarioLogado(Usuario usuario) {
-        setAttribute("usuarioLogado", usuario);
+	public void setUsuarioLogado(String usuario) {
+        setAttribute("username", usuario);
     }
 	
-	public void encerrarSessao() {   
+	public void encerrarSessao() throws IOException {   
         currentExternalContext().invalidateSession();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
     }
 	
 }

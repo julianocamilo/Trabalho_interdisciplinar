@@ -75,7 +75,7 @@ input[type="submit"]:hover, input[type="button"]:hover {
 	color: black;
 }	
 
-form {
+form:not(.not-margin) {
 	margin-top: 1em;
 }
 

@@ -24,4 +24,12 @@
   <listener>
        <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
    </listener>
+   <filter> 
+	 <filter-name>SessionFilter</filter-name> 
+	 <filter-class>filter.SessionFilter</filter-class> 
+   </filter>
+   <filter-mapping> 
+	 <filter-name>SessionFilter</filter-name> 
+	 <url-pattern>/View/*</url-pattern> 
+   </filter-mapping>
 </web-app>
