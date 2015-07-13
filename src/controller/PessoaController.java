@@ -93,6 +93,12 @@ public class PessoaController extends ApplicationController {
 	private String id_horario;
 	private String messageError;
 	
+	/* Hash de pesquisa */
+	private Map<String,Object> all_sexo;
+	private Map<String,Object> all_etnia;
+	private Map<String,Object> all_religiao;
+	private Map<String,Object> all_tipoFiliacao;
+	
 	public void save() throws Exception{
 		this.messageError = "";
 		try {
@@ -149,7 +155,8 @@ public class PessoaController extends ApplicationController {
 	}
  
 	public Map<String,Object> getTipoFiliacao() throws Exception {
-		return hashTipoFiliacao();
+		if (all_tipoFiliacao.isEmpty()) all_tipoFiliacao = hashTipoFiliacao();		
+		return all_tipoFiliacao;
 	}
 	
 	// Sexo
@@ -163,7 +170,8 @@ public class PessoaController extends ApplicationController {
 	}
  
 	public Map<String,Object> getSexo() throws Exception {
-		return hashSexo();
+		if (all_sexo.isEmpty()) all_sexo = hashSexo();		
+		return all_sexo;
 	}
 	// End Sexo
 	
@@ -178,7 +186,8 @@ public class PessoaController extends ApplicationController {
 	}
  
 	public Map<String,Object> getReligiao() throws Exception {
-		return hashReligiao();
+		if (all_religiao.isEmpty()) all_religiao = hashReligiao();		
+		return all_religiao;		
 	}
 	// End Religiao
 		
@@ -193,7 +202,8 @@ public class PessoaController extends ApplicationController {
 	}
  
 	public Map<String,Object> getEtnia() throws Exception {
-		return hashEtnia();
+		if (all_etnia.isEmpty()) all_etnia= hashEtnia();
+		return all_etnia;
 	}
 	// End Etnia
 		
