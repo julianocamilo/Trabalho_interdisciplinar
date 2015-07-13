@@ -5,9 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -16,6 +18,7 @@ import controller.VendaController.Itens;
 import bo.GerenciadorCurso;
 import bo.GerenciadorHorario;
 import bo.GerenciadorItem;
+import bo.GerenciadorProduto;
 import bo.GerenciadorTurma;
 import dto.Curso;
 import dto.Horario;
@@ -39,9 +42,9 @@ public class TurmaController extends ApplicationController {
 	private String produtoId;
 	private List<Produto> produtoList =  new ArrayList<Produto>();
 	private String messageError;
-	private List<Turma> turmaList =  new ArrayList<Turma>();
-//	private List<Turma> turmaList =  carregaTurmas();
-	//TurmaController() throws Exception{ carregaTurmas(); };
+	
+	private List<Turma> turmaList =  carregaTurmas();
+	
 	
 	public void save() throws Exception{ 
 		this.messageError = "";
@@ -51,43 +54,38 @@ public class TurmaController extends ApplicationController {
 				throw new Exception(message);
 			}
 			int capacidade_int = Integer.parseInt(capacidade);
-			DateFormat formatter = new SimpleDateFormat("MM/dd/yy");  
+			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
 			Date date_inicio = (Date)formatter.parse(this.data_ini);
 			Date date_fim = (Date)formatter.parse(this.data_fim);
 			
-		//	GerenciadorTurma.salvar(capacidade_int, date_inicio, date_fim, this.tema, this.curso_id, returnHorarioId(), returnProdutoId());
+			GerenciadorTurma.salvar(capacidade_int, date_inicio, date_fim, this.tema, Integer.parseInt(curso_id), returnHorarioId(), returnProdutoId());
+			super.setMessage("msgError", "Sucesso!");
+			
+			
+			
 		}catch(Exception ex) {						
 			super.setMessage("msgError", ex.getMessage());
 		}	
 	}
 	
-	private List<Integer> returnHorarioId() {
-		List<Integer> horariosId = new ArrayList<Integer>();		
-		for (int index = 0; index < horarioList.size(); index++)
-			horariosId.add(horarioList.get(index).getId());
-		return horariosId;
-	}
+	private Set<Integer> returnHorarioId() {
+	 	Set<Integer> horariosId = new HashSet<Integer>();	 
+	 	for (int index = 0; index < horarioList.size(); index++)
+	 	horariosId.add(horarioList.get(index).getId());
+	 	return horariosId;
+	 }
 	
-	private List<Integer> returnProdutoId() {
-		List<Integer> produtoId = new ArrayList<Integer>();		
-		for (int index = 0; index < produtoList.size(); index++)
-			produtoId.add(produtoList.get(index).getId());
-		return produtoId;
-	}
+	private Set<Integer> returnProdutoId() {
+	 	Set<Integer> produtoId = new HashSet<Integer>();	 
+	 	for (int index = 0; index < produtoList.size(); index++)
+	 	produtoId.add(produtoList.get(index).getId());
+	 	return produtoId;
+	 }
 	
 	// Curso
 	private static Map<String,Object> hashCurso() throws Exception {
-		//ArrayList<Curso> cursoArray = (new GerenciadorCurso()).listar();
-		ArrayList<Curso> cursoArray = new ArrayList<Curso>();
-		Curso curso = new Curso();
-		curso.setDescricao("Matemarico");
-		curso.setId(1);
-		cursoArray.add(curso);
+		ArrayList<Curso> cursoArray = GerenciadorCurso.listar();
 		
-		Curso curso2 = new Curso();
-		curso2.setDescricao("Portugues");
-		curso2.setId(1);
-		cursoArray.add(curso2);
 		
 		Map<String,Object> hashCurso = new LinkedHashMap<String,Object>();
 		for (int i=0; i< cursoArray.size(); i++) {			
@@ -107,14 +105,11 @@ public class TurmaController extends ApplicationController {
 	}
 
 	public void addProduto() throws NumberFormatException, Exception {
-		if (this.produtoId.isEmpty()) return;
-		Item item = GerenciadorItem.selecionar(Integer.parseInt(this.produtoId));
-		Produto produto = new Produto();
-		produto.setDescricao(item.getDescricao());
-		produto.setId(item.getId());
-		produtoList.add(produto);
-		this.produtoId = "";					
-	}
+	 	if (this.produtoId.isEmpty()) return;
+	 	Produto produto = GerenciadorProduto.selecionar(Integer.parseInt(this.produtoId));	 
+	 	produtoList.add(produto);
+	 	this.produtoId = "";	 
+	 }
 	
 	public void addHorario() throws NumberFormatException, Exception {
 		if (this.horarioId.isEmpty()) return;

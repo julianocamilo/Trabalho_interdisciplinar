@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import dto.Deficiencia;
+import dto.Item;
 
 
 public class DeficienciaDAO extends HibernateHelper<Deficiencia> implements IDAO<Deficiencia>{
@@ -23,6 +24,10 @@ public class DeficienciaDAO extends HibernateHelper<Deficiencia> implements IDAO
 	}
 
 	public Deficiencia get(Deficiencia obj) throws Exception {
-		return selecionar(obj, obj.getId());
+		HashMap<String, Object> args = new HashMap<String, Object>();
+		String query_string = "SELECT i from Deficiencia i WHERE i.id = :paramId";
+		args.put("paramId", obj.getId());
+		ArrayList<Deficiencia> d =  (ArrayList<Deficiencia>) selecionar(query_string, args);
+		return d.get(0);
 	}
 }

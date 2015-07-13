@@ -29,6 +29,11 @@ public class DeficienciaTestCase {
 		GerenciadorDeficiencia.listar();
 	}
 	
+	@Test
+	public void GetOneDeficienciaSuccess() throws Exception {
+		GerenciadorDeficiencia.selecionar(8371116);
+	}
+	
 	
 	
 	

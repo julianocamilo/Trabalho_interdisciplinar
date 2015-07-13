@@ -56,9 +56,9 @@
    			<br/>
    			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    			<h:selectOneMenu value="#{pessoaController.tipo}">
-				<f:selectItem itemValue="0" itemLabel="Professor"/>
-				<f:selectItem itemValue="1" itemLabel="Aluno"/>
-				<f:selectItem itemValue="2" itemLabel="Funcionario"/>
+				<f:selectItem itemValue="0" itemLabel="Aluno"/>
+				<f:selectItem itemValue="1" itemLabel="Funcionario"/>
+				<f:selectItem itemValue="2" itemLabel="Professor"/>
 			</h:selectOneMenu>
 			
 			&nbsp;&nbsp;&nbsp;&nbsp;
@@ -68,17 +68,17 @@
 			
 			<br/>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;								
-			<h:outputLabel rendered="#{pessoaController.tipo == '0'}">Formação</h:outputLabel>
-			<h:inputText id="formacao" value="#{pessoaController.formacao}" rendered="#{pessoaController.tipo == '0'}"/>
+			<h:outputLabel rendered="#{pessoaController.tipo == '2'}">Formação</h:outputLabel>
+			<h:inputText id="formacao" value="#{pessoaController.formacao}" rendered="#{pessoaController.tipo == '2'}"/>
 			
-			<h:outputLabel rendered="#{pessoaController.tipo == '1'}">Forma de Pagamento</h:outputLabel>
-			<h:inputText id="fpagamento" value="#{pessoaController.fpagamento}" rendered="#{pessoaController.tipo == '1'}"/>
+			<h:outputLabel rendered="#{pessoaController.tipo == '0'}">Forma de Pagamento</h:outputLabel>
+			<h:inputText id="fpagamento" value="#{pessoaController.fpagamento}" rendered="#{pessoaController.tipo == '0'}"/>
 			
-			<h:outputLabel rendered="#{pessoaController.tipo == '2'}">Data de Admissão</h:outputLabel>
-			<h:inputText id="dtAdmissao" value="#{pessoaController.dt_admissao}" rendered="#{pessoaController.tipo == '2'}"/>
+			<h:outputLabel rendered="#{pessoaController.tipo == '1'}">Data de Admissão</h:outputLabel>
+			<h:inputText id="dtAdmissao" value="#{pessoaController.dt_admissao}" rendered="#{pessoaController.tipo == '1'}"/>
 			
-			<h:outputLabel rendered="#{pessoaController.tipo == '2'}">Cargo</h:outputLabel>
-			<h:inputText id="cargo" value="#{pessoaController.cargo}" rendered="#{pessoaController.tipo == '2'}"/>
+			<h:outputLabel rendered="#{pessoaController.tipo == '1'}">Cargo</h:outputLabel>
+			<h:inputText id="cargo" value="#{pessoaController.cargo}" rendered="#{pessoaController.tipo == '1'}"/>
 			<br/>						
 			<div class="table_wraper">
 				<br/>

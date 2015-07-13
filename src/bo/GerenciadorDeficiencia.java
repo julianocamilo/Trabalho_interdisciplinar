@@ -20,6 +20,8 @@ public class GerenciadorDeficiencia {
 	}
 
 	public static Deficiencia selecionar(int deficiencia_id) throws Exception{
+		
+		System.out.println(deficiencia_id);
 		return deficienciaDao.get(new Deficiencia(deficiencia_id));
 		
 	}
