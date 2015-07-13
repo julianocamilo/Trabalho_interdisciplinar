@@ -120,7 +120,7 @@ public class TurmaController extends ApplicationController {
 	
 	public List<Turma> carregaTurmas(){		
 		try {
-			return GerenciadorTurma.listar();
+			return GerenciadorTurma.getTurmasWS();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

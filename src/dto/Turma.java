@@ -127,7 +127,13 @@ public class Turma implements Serializable{
 	
 	
 	
-	
+	public Turma(int id, int capacidade, String tema){
+		this.id = id;
+		this.capacidade = capacidade;
+		
+		this.tema = tema;
+		
+}
 	
 	
 	public Set<Aluno> getAlunos() {
