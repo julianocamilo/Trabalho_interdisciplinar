@@ -123,9 +123,6 @@ public class PessoaController extends ApplicationController {
 			int id_religiao_int = Integer.parseInt(this.id_religiao);
 			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			
-			
-			
-
 			switch (tipo) {
 			case 0:
 				GerenciadorPessoa.salvarAluno(cepInt, this.fpagamento,
@@ -252,7 +249,7 @@ public class PessoaController extends ApplicationController {
 	public void adddeficiencia() throws NumberFormatException, Exception {
 		if (this.id_deficiencia.isEmpty())
 			return;
-		
+	
 		Deficiencia deficiencia = GerenciadorDeficiencia.selecionar(Integer.parseInt(id_deficiencia));
 		Deficiencias deficiencias = new Deficiencias();
 		deficiencias.id = id_deficiencia;
