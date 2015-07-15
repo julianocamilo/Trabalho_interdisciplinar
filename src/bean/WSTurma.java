@@ -1,8 +1,6 @@
 package bean;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 

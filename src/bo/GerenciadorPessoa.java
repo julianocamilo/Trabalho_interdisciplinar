@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -28,6 +30,8 @@ import dto.Professor;
 import dto.Telefone;
 import dto.TipoFiliacao;
 
+@Stateless
+@Local
 public class GerenciadorPessoa {
 	
 	

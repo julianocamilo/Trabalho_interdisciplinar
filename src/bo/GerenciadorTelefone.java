@@ -2,10 +2,15 @@ package bo;
 
 import java.util.ArrayList;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+
 import model.IDAO;
 import model.TelefoneDAO;
 import dto.Telefone;
 
+@Stateless
+@Local
 public class GerenciadorTelefone {
 
 	private static IDAO<Telefone> TelefoneDao = new TelefoneDAO();

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import dto.Turma;
-import dto.Venda;
 
 
 public class TurmaDAO extends HibernateHelper<Turma> implements IDAO<Turma> {

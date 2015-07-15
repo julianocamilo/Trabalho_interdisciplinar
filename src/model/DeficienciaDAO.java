@@ -5,9 +5,8 @@ import helper.RandomHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import dto.Deficiencia;
-import dto.Item;
+
 
 
 public class DeficienciaDAO extends HibernateHelper<Deficiencia> implements IDAO<Deficiencia>{

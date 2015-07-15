@@ -28,7 +28,7 @@ public class Item implements Serializable{
 
 	@Id
 	@Column(name="Id_item")
-	private int id;
+	protected int id;
 	
 	@Column(name="Descricao")
 	private String descricao;

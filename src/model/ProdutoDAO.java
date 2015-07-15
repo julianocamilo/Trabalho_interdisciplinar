@@ -8,9 +8,8 @@ import helper.RandomHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import dto.Produto;
-import dto.Venda;
+
 
 
 public class ProdutoDAO extends HibernateHelper<Produto> implements IDAO<Produto> {
@@ -36,8 +35,17 @@ public class ProdutoDAO extends HibernateHelper<Produto> implements IDAO<Produto
 	}
 	
 	
+	
 	public void update(Produto estoque) throws Exception{
-		atualizar(estoque);
+		HashMap<String, Object> args = new HashMap<String, Object>();
+		String query_string = "UPDATE Item p set p.quantidade = :paramQuantidade WHERE p.id = :paramId";
+		
+		args.put("paramQuantidade", estoque.getQuantidade());
+		args.put("paramId", estoque.getId());
+		
+		update(query_string, args);
+		
+		//atualizar(estoque);
 	}
 	
 	

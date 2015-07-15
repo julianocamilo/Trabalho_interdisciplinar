@@ -8,12 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import dto.Aluno;
-import dto.Dia;
-import dto.TipoFiliacao;
 import dto.Turma;
-import bo.GerenciadorDia;
-import bo.GerenciadorEtnia;
-import bo.GerenciadorHorario;
 import bo.GerenciadorPessoa;
 import bo.GerenciadorTurma;
 

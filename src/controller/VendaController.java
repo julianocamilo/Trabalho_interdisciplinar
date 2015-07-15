@@ -4,7 +4,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -15,7 +14,6 @@ import dto.Servico;
 
 import java.util.List;
 
-import bo.GerenciadorItem;
 import bo.GerenciadorProduto;
 import bo.GerenciadorServico;
 import bo.GerenciadorVenda;

@@ -8,9 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import dto.Dia;
-import dto.TipoFiliacao;
 import bo.GerenciadorDia;
-import bo.GerenciadorEtnia;
 import bo.GerenciadorHorario;
 
 @ManagedBean
@@ -44,7 +42,7 @@ public class HorarioController extends ApplicationController {
 	}
 	
 	private static Map<String,Object> hashDia() throws Exception {
-		ArrayList<Dia> diaArray = (new GerenciadorDia()).listar();
+		ArrayList<Dia> diaArray = GerenciadorDia.listar();
 		
 		Map<String,Object> hashDia = new LinkedHashMap<String,Object>();
 		for (int i=0; i< diaArray.size(); i++) {			

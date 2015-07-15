@@ -2,12 +2,10 @@ package bo;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import javax.xml.ws.WebServiceRef;
 import dto.Aluno;
 import dto.Horario;
 import dto.Produto;

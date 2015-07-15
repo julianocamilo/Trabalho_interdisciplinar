@@ -2,10 +2,15 @@ package bo;
 
 import java.util.ArrayList;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+
 import dto.Etnia;
 import model.IDAO;
 import model.EtniaDAO;
 
+@Stateless
+@Local
 public class GerenciadorEtnia{
 
 	private static IDAO<Etnia> EtniaDao = new EtniaDAO();

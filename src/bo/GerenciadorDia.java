@@ -2,10 +2,15 @@ package bo;
 
 import java.util.ArrayList;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+
 import dto.Dia;
 import model.IDAO;
 import model.DiaDAO;
 
+@Stateless
+@Local
 public class GerenciadorDia{
 
 	private static IDAO<Dia> DiaDao = new DiaDAO();

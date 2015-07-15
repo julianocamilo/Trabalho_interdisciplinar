@@ -2,8 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-import dto.Produto;
-
 public interface IDAO<T> {
 
 	public void save(T obj) throws Exception;

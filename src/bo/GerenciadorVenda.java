@@ -3,13 +3,19 @@ package bo;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+
 import model.IDAO;
 import model.ItemVendaDAO;
 import model.VendaDAO;
 import dto.Item;
 import dto.ItemVenda;
+import dto.Produto;
 import dto.Venda;
 
+@Stateless
+@Local
 public class GerenciadorVenda {
 
 	
@@ -20,7 +26,6 @@ public class GerenciadorVenda {
 		
 		VendaDao.save(new Venda(data, valor,pessoa_id));
 		
-		
 		VendaDAO vdao = (VendaDAO) VendaDao;
 		
 		int venda_id = vdao.getId_created();
@@ -28,6 +33,18 @@ public class GerenciadorVenda {
 		if(itens!=null)
 			
 			for (Item item : itens) {
+				
+				
+				if(item.getQuantidadeSolicitada() > 0){
+					Produto produto = GerenciadorProduto.selecionar(item.getId());
+					int quantidadeEstoque = produto.getQuantidade();
+					if (quantidadeEstoque < item.getQuantidadeSolicitada())
+						throw new Exception(item.getId() + " - No estoque há apenas " + quantidadeEstoque + " produtos disponiveis");
+						//continue;
+					produto.setQuantidade(quantidadeEstoque - item.getQuantidadeSolicitada());
+					GerenciadorProduto.atualizar(produto);
+				}
+				
 				
 				ItemVenda itemVenda = new ItemVenda();
 				itemVenda.setVenda(new Venda(venda_id));

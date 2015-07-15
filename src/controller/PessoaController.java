@@ -24,12 +24,12 @@ import java.util.List;
 import bo.GerenciadorDeficiencia;
 import bo.GerenciadorEtnia;
 import bo.GerenciadorHorario;
-import bo.GerenciadorItem;
+
 import bo.GerenciadorPessoa;
 import bo.GerenciadorReligiao;
 import bo.GerenciadorSexo;
 import bo.GerenciadorTipoFiliacao;
-import bo.GerenciadorVenda;
+
 
 @ManagedBean
 @ViewScoped

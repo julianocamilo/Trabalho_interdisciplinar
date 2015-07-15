@@ -1,18 +1,10 @@
 package model;
 
 import helper.HibernateHelper;
-import helper.HibernateUtil;
 import helper.RandomHelper;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
 import dto.Aluno;
-import dto.Curso;
-import dto.Telefone;
 
 public class AlunoDAO extends HibernateHelper<Aluno> implements IDAO<Aluno> {
 

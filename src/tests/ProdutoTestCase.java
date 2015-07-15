@@ -1,10 +1,7 @@
 package tests;
 
 import static org.junit.Assert.*;
-import helper.RandomHelper;
-
 import org.junit.Test;
-
 import dto.Produto;
 import bo.GerenciadorProduto;
 
@@ -45,7 +42,7 @@ public class ProdutoTestCase {
 	@Test
 	public void updateProdutoSuccess() {
 		try {
-			bo.GerenciadorProduto.atualizar(new Produto(666 ,"dsdds", 200, 16, "PRERIFGO"));
+			bo.GerenciadorProduto.atualizar(new Produto(666 ,"dsdds", 200, 20, "PRERIFGO"));
 		} 
 		catch (Exception e) {
 			fail("ERRO SALVAR Produto: " + e.getMessage());

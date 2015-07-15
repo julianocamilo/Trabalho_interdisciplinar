@@ -5,7 +5,6 @@ import javax.ejb.Stateless;
 
 import model.IDAO;
 import model.UsuarioDAO;
-import dto.Curso;
 import dto.Usuario;
 
 @Stateless

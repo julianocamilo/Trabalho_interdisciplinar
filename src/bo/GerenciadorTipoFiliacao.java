@@ -2,10 +2,15 @@ package bo;
 
 import java.util.ArrayList;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+
 import model.TipoFiliacaoDAO;
 import model.IDAO;
 import dto.TipoFiliacao;
 
+@Stateless
+@Local
 public class GerenciadorTipoFiliacao {
 
 	private static IDAO<TipoFiliacao> TipoFiliacaoDao = new TipoFiliacaoDAO();

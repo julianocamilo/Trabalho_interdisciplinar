@@ -2,10 +2,15 @@ package bo;
 
 import java.util.ArrayList;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+
 import dto.Curso;
 import model.IDAO;
 import model.CursoDAO;
 
+@Stateless
+@Local
 public class GerenciadorCurso{
 
 	private static IDAO<Curso> CursoDao = new CursoDAO();

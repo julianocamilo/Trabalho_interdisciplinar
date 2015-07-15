@@ -2,10 +2,15 @@ package bo;
 
 import java.util.ArrayList;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+
 import model.DeficienciaDAO;
 import model.IDAO;
 import dto.Deficiencia;
 
+@Stateless
+@Local
 public class GerenciadorDeficiencia {
 
 	private static IDAO<Deficiencia> deficienciaDao = new DeficienciaDAO();

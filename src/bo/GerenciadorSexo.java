@@ -2,10 +2,15 @@ package bo;
 
 import java.util.ArrayList;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+
 import dto.Sexo;
 import model.IDAO;
 import model.SexoDAO;
 
+@Stateless
+@Local
 public class GerenciadorSexo{
 
 	private static IDAO<Sexo> sexoDao = new SexoDAO();

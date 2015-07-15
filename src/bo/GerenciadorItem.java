@@ -2,10 +2,15 @@ package bo;
 
 import java.util.ArrayList;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+
 import model.IDAO;
 import model.ItemDAO;
 import dto.Item;
 
+@Stateless
+@Local
 public class GerenciadorItem {
 
 	private static IDAO<Item> itemDao = new ItemDAO();

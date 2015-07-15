@@ -3,15 +3,16 @@ package bo;
 
 import java.util.ArrayList;
 
-
-
+import javax.ejb.Local;
+import javax.ejb.Stateless;
 import model.ServicoDAO;
 import model.IDAO;
 import dto.Servico;
-import dto.Venda;
 
 
 
+@Stateless
+@Local
 public class GerenciadorServico {
 
 	

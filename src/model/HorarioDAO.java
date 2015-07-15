@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import dto.Horario;
-import dto.Venda;
-
 
 public class HorarioDAO extends HibernateHelper<Horario> implements IDAO<Horario> {
 

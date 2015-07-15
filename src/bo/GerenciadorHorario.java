@@ -2,11 +2,15 @@ package bo;
 
 import java.util.ArrayList;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+
 import dto.Horario;
-import dto.Item;
 import model.IDAO;
 import model.HorarioDAO;
 
+@Stateless
+@Local
 public class GerenciadorHorario{
 
 	private static IDAO<Horario> HorarioDao = new HorarioDAO();

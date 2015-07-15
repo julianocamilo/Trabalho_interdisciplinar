@@ -4,11 +4,8 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Date;
-
 import org.junit.Test;
-
 import dto.Item;
-import dto.ItemVenda;
 import dto.Venda;
 import bo.GerenciadorVenda;
 

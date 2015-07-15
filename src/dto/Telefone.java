@@ -31,11 +31,8 @@ public class Telefone implements Serializable{
 	
 	public Telefone(){}
 	public Telefone(String telefone, int pessoa_id){
-		 this.id = id;
-		 this.telefone = telefone;
-		 
-		 this.pessoa = new Pessoa(pessoa_id);
-		 
+		this.telefone = telefone;
+		this.pessoa = new Pessoa(pessoa_id);
 	}
 	
 	//LazyLoad

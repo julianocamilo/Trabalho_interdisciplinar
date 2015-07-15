@@ -1,17 +1,11 @@
 package tests;
 
 import static org.junit.Assert.*;
-import helper.RandomHelper;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
-
 import org.junit.Test;
-
 import dto.Horario;
-import dto.TipoFiliacao;
 import bo.GerenciadorPessoa;
 
 

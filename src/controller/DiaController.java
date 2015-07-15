@@ -2,9 +2,8 @@ package controller;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-
 import bo.GerenciadorDia;
-import bo.GerenciadorEtnia;
+
 
 @ManagedBean
 @ViewScoped

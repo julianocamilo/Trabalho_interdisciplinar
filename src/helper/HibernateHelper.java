@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -99,6 +100,30 @@ public class HibernateHelper<T>{
 		
 		
 	}
+	
+	@Transactional
+	protected void update(String query_string, HashMap<String, Object> args) throws Exception{
+		
+		EntityManager em =  this.getFactory();
+		Query query = em.createQuery(query_string);
+		em.getTransaction().begin();   
+		
+		
+	    
+		for(Entry<String, Object> entry : args.entrySet()) {
+		    String key = entry.getKey();
+		    Object value = entry.getValue();
+		    
+		    query = query.setParameter(key, value);
+		}		
+		
+		
+		
+		query.executeUpdate();
+		em.getTransaction().commit();
+		
+	}
+	
 	
 	
 	protected Collection<T> selecionar(String query_string, HashMap<String, Object> args) throws Exception{

@@ -2,10 +2,15 @@ package bo;
 
 import java.util.ArrayList;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+
 import dto.Religiao;
 import model.IDAO;
 import model.ReligiaoDAO;
 
+@Stateless
+@Local
 public class GerenciadorReligiao {
 
 	
