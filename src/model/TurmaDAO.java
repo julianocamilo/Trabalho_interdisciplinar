@@ -19,7 +19,7 @@ public class TurmaDAO extends HibernateHelper<Turma> implements IDAO<Turma> {
 
 	public ArrayList<Turma> getAll() throws Exception {
 		HashMap<String, Object> args = new HashMap<String, Object>();
-		String query_string = "SELECT e from Turma e ";
+		String query_string = "SELECT e, cr from Turma e LEFT JOIN fetch e.curso cr";
 		return  (ArrayList<Turma>) consultar(query_string, args);
 		
 	}

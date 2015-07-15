@@ -4,7 +4,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -14,17 +13,16 @@ import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import controller.VendaController.Itens;
 import bo.GerenciadorCurso;
 import bo.GerenciadorHorario;
-import bo.GerenciadorItem;
+
 import bo.GerenciadorProduto;
 import bo.GerenciadorTurma;
 import dto.Curso;
 import dto.Horario;
-import dto.Item;
+
 import dto.Produto;
-import dto.Sexo;
+
 import dto.Turma;
 
 @ManagedBean
@@ -43,6 +41,7 @@ public class TurmaController extends ApplicationController {
 	private List<Produto> produtoList =  new ArrayList<Produto>();
 	private String messageError;
 	private List<Turma> turmaList =  carregaTurmas();
+
 	
 	public void save() throws Exception{ 
 		this.messageError = "";
@@ -113,7 +112,7 @@ public class TurmaController extends ApplicationController {
 	
 	public List<Turma> carregaTurmas(){		
 		try {
-		//	return GerenciadorTurma.getTurmasWS();
+			return (List<Turma>)GerenciadorTurma.listar();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

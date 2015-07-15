@@ -1,7 +1,6 @@
 
 package bean.jaxws;
 
-import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -13,15 +12,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "listarTurmasResponse", namespace = "http://bean/")
 public class ListarTurmasResponse {
 
-    @XmlElement(name = "return", namespace = "")
-    private ArrayList<dto.Turma> _return;
+    @XmlElement(name = "return", namespace = "", nillable = true)
+    private String[] _return;
 
     /**
      * 
      * @return
-     *     returns ArrayList<Turma>
+     *     returns String[]
      */
-    public ArrayList<dto.Turma> getReturn() {
+    public String[] getReturn() {
         return this._return;
     }
 
@@ -30,7 +29,7 @@ public class ListarTurmasResponse {
      * @param _return
      *     the value for the _return property
      */
-    public void setReturn(ArrayList<dto.Turma> _return) {
+    public void setReturn(String[] _return) {
         this._return = _return;
     }
 

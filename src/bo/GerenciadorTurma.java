@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
 import javax.xml.ws.WebServiceRef;
 import dto.Aluno;
 import dto.Horario;
@@ -13,6 +15,9 @@ import dto.Turma;
 import model.IDAO;
 import model.TurmaDAO;
 
+
+@Stateless
+@Local
 public class GerenciadorTurma{
 
 	private static IDAO<Turma> TurmaDao = new TurmaDAO();
@@ -74,28 +79,5 @@ public class GerenciadorTurma{
 		
 		
 	}
-	
-//	@WebServiceRef(wsdlLocation = "http://localhost:8080/Trabalho_interdisciplinar/WSTurmaService?wsdl")
-//	private static WSTurmaService turmaws;
-//	
-//	
-//	public static List<Turma> getTurmasWS() throws Exception{
-//		turmaws = new WSTurmaService();
-//		WSTurma port = turmaws.getWSTurmaPort();
-//		List<bean.Turma> turmas =  (List<bean.Turma>) port.listarTurmas();
-//		
-//		ArrayList<Turma> tumarWS = new ArrayList<Turma>();
-//		
-//		for (bean.Turma turma : turmas) {
-//			
-//			tumarWS.add(new Turma(turma.getId(), turma.getCapacidade(), turma.getTema() ));
-//			
-//		}
-//		
-//		return tumarWS;
-//	}
-	
-	
-	
 	
 }
